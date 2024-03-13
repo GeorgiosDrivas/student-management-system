@@ -1,6 +1,5 @@
 import CircularProgress from '@mui/material/CircularProgress';
 
-
 export default function Summary({ user }) {
     let gpa = 0;
     

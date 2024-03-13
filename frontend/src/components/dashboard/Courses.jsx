@@ -15,7 +15,7 @@ export default function Semester({ user }) {
                             (user.courses && user.courses.length > 0) ?
                             (
                                 user.courses.map(course => (
-                                    <div className="accordion-item">
+                                    <div className="accordion-item" key={course._id}>
                                         <h2 className="accordion-header" id={'heading' + course._id}>
                                             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={'#collapse' + course._id} aria-expanded="true" aria-controls={'collapse' + course._id}>
                                                 <p key={course._id}>{course.course_name}</p>

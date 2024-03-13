@@ -21,7 +21,7 @@ export default function Events({ user }) {
                     (user.events && user.events.length > 0) ?
                     (
                         user.events.map(event => (
-                            <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={event._id}>
                                 <div className="event_wrap text-center">
                                     <h2>{event.event_name}</h2>
                                     <div className="event_content">
