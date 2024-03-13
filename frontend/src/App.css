@@ -1,0 +1,40 @@
+.summaries {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.gpa_summary_content,
+.semester_summary_content {
+  top: calc(100% - 57%);
+  left: calc(100% - 62%);
+}
+.summary_content h2 {
+  font-size: 20px;
+}
+
+.summary_content p {
+  font-size: 45px;
+  margin: 0;
+}
+.event_wrap{
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.summary-title{
+  border-bottom: 1px solid rgb(0 0 0 / 22%);
+}
+.dashboard-section{
+  margin-bottom: 100px;
+}
+#main{
+  margin-top: 100px;
+}
+.gpa_summary,
+.semester_summary{
+  border: 1px solid;
+  padding: 50px;
+}
