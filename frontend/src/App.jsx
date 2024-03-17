@@ -1,6 +1,8 @@
 import './App.css'
 import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard';
+import Sidebar from './components/Sidebar';
+import News from './components/News';
 
 function App() {
   const [users, setUsers] = useState({});
@@ -25,7 +27,17 @@ function App() {
 
   return (
     <>
-      <Dashboard data={users} />
+    <div className="row">
+      <div className='col-12 col-lg-2 p-0'>
+        <Sidebar/>
+      </div>
+      <div className='col-12 col-lg-8'>
+        <Dashboard data={users} />
+      </div>
+      <div className="col-12 col-lg-2">
+        <News user={users} />
+      </div>
+    </div>
     </>
   )
 }

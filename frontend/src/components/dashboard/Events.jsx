@@ -9,6 +9,7 @@ export default function Events({ user }) {
 
     return (
         <>
+        <div className='container'>
             <div className="row">
                 <div className="col-12">
                     <div className="summary-title mb-5">
@@ -34,6 +35,7 @@ export default function Events({ user }) {
                     ) : null
                 }
             </div>
+        </div>
         </>
     )
 }

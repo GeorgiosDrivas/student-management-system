@@ -36,31 +36,33 @@ export default function Summary({ user }) {
 
     return (
         <>
+        <div className='container'>
             <div className='row'>
-                <div className="col-12">
-                    <div className="summary-title mb-5">
-                        <h2 className="text-center">Summary</h2>
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className='summaries'>
-                        <div className='gpa_summary position-relative'>
-                            <p>GPA</p>
-                            <div className='position-absolute gpa_summary_content summary_content'>
-                               <p className='text-center'>{gpa}</p>
-                            </div>
-                            <CircularProgress thickness={2.5} size='15em' variant="determinate" className='progressGPA' value={75} />
-                        </div>
-                        <div className='semester_summary position-relative'>
-                            <p>Semester</p>
-                            <div className='position-absolute semester_summary_content summary_content'>
-                                <p className='text-center'>{percent + '%'}</p>
-                            </div>
-                            <CircularProgress thickness={2.5} size='15em' variant="determinate" className='progressSummary' value={percent} />
+                    <div className="col-12">
+                        <div className="summary-title mb-5">
+                            <h2 className="text-center">Summary</h2>
                         </div>
                     </div>
+                    <div className="col-12">
+                        <div className='summaries'>
+                            <div className='gpa_summary position-relative'>
+                                <p>GPA</p>
+                                <div className='position-absolute gpa_summary_content summary_content'>
+                                <p className='text-center'>{gpa}</p>
+                                </div>
+                                <CircularProgress thickness={2.5} size='15em' variant="determinate" className='progressGPA' value={75} />
+                            </div>
+                            <div className='semester_summary position-relative'>
+                                <p>Semester</p>
+                                <div className='position-absolute semester_summary_content summary_content'>
+                                    <p className='text-center'>{percent + '%'}</p>
+                                </div>
+                                <CircularProgress thickness={2.5} size='15em' variant="determinate" className='progressSummary' value={percent} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+        </div>
         </>
     )
 }
