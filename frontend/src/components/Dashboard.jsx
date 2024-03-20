@@ -1,7 +1,6 @@
 import Summary from "./dashboard/Summary";
 import Semester from "./dashboard/Courses";
-import Events from "./dashboard/Events";
-import News from "./News";
+
 
 export default function Dashboard({ data }) {
     // Declare date variables for greeting message
@@ -35,12 +34,6 @@ export default function Dashboard({ data }) {
                 <div className="container">
                     <Semester user={data} />
                 </div>
-            </section>
-            <section className="dashboard-section position-relative">
-                <Events user={data} />
-            </section>
-            <section className="dashboard-section position-relative">
-                <News user={data} />
             </section>
         </main>
         </>

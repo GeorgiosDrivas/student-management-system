@@ -1,7 +1,7 @@
 export default function Sidebar(){
     return(
         <>
-        <section className="news-section position-relative w-100">
+        <section className="right-sidebar position-relative w-100">
             <ul id="sidebar-ul" className="position-fixed">
                 <li>Dashboard</li>
                 <li>Semester</li>

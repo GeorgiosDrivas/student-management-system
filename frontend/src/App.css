@@ -17,19 +17,19 @@
   font-size: 45px;
   margin: 0;
 }
-.event_wrap{
+.event_wrap {
   border: 1px solid;
-  padding: 10px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 17px;
 }
 .summary-title{
   border-bottom: 1px solid rgb(0 0 0 / 22%);
 }
 .dashboard-section{
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 #main{
   margin-top: 100px;
@@ -73,7 +73,13 @@
   padding: 10px;
   border-radius: 10px;
 }
-.news-section{
+.left-sidebar{
+  overflow-y: scroll;
+  background: #4dabf7;
+  color: #fff;
+  height: 100%;
+}
+.right-sidebar{
   background: #4dabf7;
   color: #fff;
   height: 100%;

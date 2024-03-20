@@ -1,7 +1,7 @@
 export default function News({ user }) {
     return (
         <>
-        <section className="news-section dashboard-section position-relative position-fixed">
+        <section className="dashboard-section position-relative">
             <div className='container'>
                 <div className="row">
                     <div className="col-12">
