@@ -9,6 +9,7 @@
   top: calc(100% - 57%);
   left: calc(100% - 62%);
 }
+
 .summary_content h2 {
   font-size: 20px;
 }
@@ -17,6 +18,7 @@
   font-size: 45px;
   margin: 0;
 }
+
 .event_wrap {
   border: 1px solid;
   border-radius: 10px;
@@ -25,24 +27,30 @@
   flex-direction: column;
   margin-bottom: 17px;
 }
-.summary-title{
+
+.summary-title {
   border-bottom: 1px solid rgb(0 0 0 / 22%);
 }
-.dashboard-section{
+
+.dashboard-section {
   margin-bottom: 50px;
 }
-#main{
+
+#main {
   margin-top: 100px;
 }
+
 .gpa_summary,
-.semester_summary{
+.semester_summary {
   border: 1px solid;
   padding: 50px;
 }
-#sidebar-ul{
+
+#sidebar-ul {
   list-style: none;
   margin-top: 50px;
 }
+
 #sidebar-ul li {
   font-size: 30px;
   margin-bottom: 30px;
@@ -54,17 +62,21 @@
   transition: all, 0.3s;
   border: 1px solid #fff;
 }
-#sidebar-ul li:hover{
+
+#sidebar-ul li:hover {
   background-color: #4dabf7;
   color: #fff;
   border: 1px solid #fff;
 }
-.article-wrap h2{
+
+.article-wrap h2 {
   font-size: 17px;
 }
+
 .article-wrap p {
   font-size: 14px;
 }
+
 .article-wrap {
   margin-bottom: 30px;
   cursor: pointer;
@@ -73,14 +85,24 @@
   padding: 10px;
   border-radius: 10px;
 }
-.left-sidebar{
+
+.left-sidebar {
   overflow-y: scroll;
   background: #4dabf7;
   color: #fff;
   height: 100%;
 }
-.right-sidebar{
+
+.right-sidebar {
   background: #4dabf7;
   color: #fff;
   height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+#sidebar-ul li:hover a {
+  color: #fff;
 }
