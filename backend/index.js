@@ -12,6 +12,19 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Route to add a new student
+app.post('/students', async (request, response) => {
+    try {
+        const { name, surname } = request.body; // Assuming the request body contains these fields
+        const newStudent = new Student({ name, surname });
+        const savedStudent = await newStudent.save();
+        return response.status(201).json(savedStudent);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
 app.get('/', (request, response) => {
     response.send("Welcome to Student Management System");
 });
