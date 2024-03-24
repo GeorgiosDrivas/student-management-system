@@ -103,6 +103,12 @@ a {
   text-decoration: none;
 }
 
+#sidebar-ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 #sidebar-ul li:hover a {
   color: #fff;
 }
