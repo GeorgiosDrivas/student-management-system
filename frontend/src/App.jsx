@@ -4,45 +4,92 @@ import Dashboard from './components/Dashboard';
 import Sidebar from './components/Sidebar';
 import News from './components/News';
 import Events from './components/dashboard/Events';
-function App() {
-  const [users, setUsers] = useState({});
-  const [loading, setLoading] = useState(true);
 
-  const fetchUserData = () => {
-    fetch("http://localhost:3000/students")
-      .then(response => response.json())
-      .then(data => {
-        setUsers(data);
-        setLoading(false); // Set loading to false once data is fetched
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-        setLoading(false); // Set loading to false in case of an error
-      });
-  }
+function App() {
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [users, setUsers] = useState([]); // State to hold the users data
 
   useEffect(() => {
-    fetchUserData();
+    // Fetch users data when the component mounts
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/students');
+        if (!response.ok) {
+          throw new Error('Failed to fetch students data');
+        }
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        setError('Failed to fetch students data');
+      }
+    };
+
+    fetchUsers();
   }, []);
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch('http://localhost:3000/students', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ name, surname: String(surname) }), // Convert surname to string
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error('Failed to add student');
+  //     }
+  //     // Clear form fields on success
+  //     setName('');
+  //     setSurname('');
+  //     // Optionally, you can trigger a refetch of the data here
+  //   } catch (error) {
+  //     setError('Failed to add student');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <>
-    <div className="row">
-      <div className='col-12 col-lg-2 p-0'>
-        <Sidebar/>
-      </div>
-      <div className='col-12 col-lg-8'>
-        <Dashboard data={users} />
-      </div>
-      <div className="col-12 col-lg-2">
-        <div className='left-sidebar position-fixed'>
-          <News user={users} />
-          <Events user={users} />
+      <div className="row">
+        <div className='col-12 col-lg-2 p-0'>
+          <Sidebar />
+        </div>
+        <div className='col-12 col-lg-8'>
+          <Dashboard data={users} />
+        </div>
+        <div className="col-12 col-lg-2">
+          <div className='left-sidebar position-fixed'>
+            <News user={users} />
+            <Events user={users} />
+          </div>
         </div>
       </div>
-    </div>
     </>
-  )
-}
+    // <div>
+    //   <h2>Add Student</h2>
+    //   <form onSubmit={handleSubmit}>
+    //     <label>
+    //       Name:
+    //       <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+    //     </label>
+    //     <label>
+    //       Surname:
+    //       <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
+    //     </label>
+    //     <button type="submit" disabled={loading}>
+    //       {loading ? 'Adding...' : 'Add Student'}
+    //     </button>
+    //     {error && <p>{error}</p>}
+    //   </form>
+    // </div>
+  );
+};
 
 export default App
