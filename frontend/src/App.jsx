@@ -3,7 +3,12 @@ import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard';
 import Sidebar from './components/Sidebar';
 import News from './components/News';
+import SemesterSb from './components/sidebar/Semester-sb';
+import Logout from './components/sidebar/Logout-sb';
 import Events from './components/dashboard/Events';
+import Settings from './components/sidebar/Settings-sb';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 function App() {
   const [name, setName] = useState('');
@@ -57,20 +62,29 @@ function App() {
 
   return (
     <>
-      <div className="row">
-        <div className='col-12 col-lg-2 p-0'>
-          <Sidebar />
-        </div>
-        <div className='col-12 col-lg-8'>
-          <Dashboard data={users} />
-        </div>
-        <div className="col-12 col-lg-2">
-          <div className='left-sidebar position-fixed'>
-            <News user={users} />
-            <Events user={users} />
+      <Router>
+        <div className="row">
+          <div className='col-12 col-lg-2 p-0'>
+            <Sidebar />
+          </div>
+          <div className='col-12 col-lg-8'>
+            <Routes>
+              <Route exact path="/" element={<Dashboard data={users} />} />
+              <Route path="/semester" element={<SemesterSb data={users} />} />
+              <Route path="/events" element={<Events user={users} />} />
+              <Route path="/news" element={<News user={users} />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/logout" element={<Logout />} />
+            </Routes>
+          </div>
+          <div className="col-12 col-lg-2">
+            <div className='left-sidebar position-fixed'>
+              <News user={users} />
+              <Events user={users} />
+            </div>
           </div>
         </div>
-      </div>
+      </Router>
     </>
     // <div>
     //   <h2>Add Student</h2>
