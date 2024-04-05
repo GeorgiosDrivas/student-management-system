@@ -64,10 +64,10 @@ function App() {
     <>
       <Router>
         <div className="row">
-          <div className='col-12 col-lg-2 p-0'>
+          <div className='col-12 col-lg-1 p-0'>
             <Sidebar />
           </div>
-          <div className='col-12 col-lg-8'>
+          <div className='col-12 col-lg-7'>
             <Routes>
               <Route exact path="/" element={<Dashboard data={users} />} />
               <Route path="/semester" element={<SemesterSb data={users} />} />
@@ -77,7 +77,7 @@ function App() {
               <Route path="/logout" element={<Logout />} />
             </Routes>
           </div>
-          <div className="col-12 col-lg-2">
+          <div className="col-12 col-lg-4">
             <div className='left-sidebar position-fixed'>
               <News user={users} />
               <Events user={users} />
