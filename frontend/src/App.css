@@ -1,13 +1,17 @@
 /* Styling */
+body {
+  background-color: #f9fafc;
+}
+
 .summaries {
-  display: flex;
-  justify-content: space-evenly;
+  display: inline-flex;
+  gap: 50px;
 }
 
 .gpa_summary_content,
 .semester_summary_content {
-  top: calc(100% - 57%);
-  left: calc(100% - 62%);
+  top: calc(100% - 70%);
+  left: calc(100% - 64%);
 }
 
 .summary_content h2 {
@@ -15,7 +19,7 @@
 }
 
 .summary_content p {
-  font-size: 45px;
+  font-size: 35px;
   margin: 0;
 }
 
@@ -28,10 +32,6 @@
   margin-bottom: 17px;
 }
 
-.summary-title {
-  border-bottom: 1px solid rgb(0 0 0 / 22%);
-}
-
 .dashboard-section {
   margin-bottom: 50px;
 }
@@ -40,10 +40,21 @@
   margin-top: 100px;
 }
 
+.greetings-message {
+  font-size: 30px;
+}
+
 .gpa_summary,
-.semester_summary {
-  border: 1px solid;
-  padding: 50px;
+.semester_summary,
+.semester-section {
+  padding: 15px 40px;
+  box-shadow: 1px 1px 15px;
+  border-radius: 40px;
+  background-color: #fff;
+}
+
+.summary-text {
+  font-size: 25px;
 }
 
 .article-wrap h2 {
@@ -65,9 +76,11 @@
 
 .left-sidebar {
   overflow-y: scroll;
-  background: #4dabf7;
-  color: #fff;
+  background: #fff;
   height: 100%;
+  scrollbar-width: 5px;
+  scrollbar-color: red;
+  border-left: 1px solid #f9fafc;
 }
 
 #sidebar-ul {
@@ -76,13 +89,15 @@
   list-style: none;
   padding-top: 50px;
   width: 5%;
+  overflow: hidden;
   padding-left: 5px;
   border-radius: 0 40px 40px 0;
   transition: all, 0.3s;
+  z-index: 999;
 }
 
 #sidebar-ul:hover {
-  width: 20%;
+  width: 17%;
 }
 
 #sidebar-ul li {
