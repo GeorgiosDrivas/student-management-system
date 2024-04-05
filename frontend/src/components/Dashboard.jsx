@@ -37,4 +37,8 @@ export default function Dashboard({ data }) {
             </main>
         </>
     )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c4ffcbf (Dashboard styling and layout)

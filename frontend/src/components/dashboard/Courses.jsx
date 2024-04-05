@@ -35,4 +35,8 @@ export default function Semester({ user }) {
             </div>
         </>
     )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c4ffcbf (Dashboard styling and layout)
