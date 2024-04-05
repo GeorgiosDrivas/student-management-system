@@ -2,9 +2,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Summary({ user }) {
     let gpa = 0;
-    
+
     // Calculate the gpa based on the midterm grades
-    if(user.courses && user.courses.length > 0){
+    if (user.courses && user.courses.length > 0) {
         user.courses.map(course => {
             gpa = gpa + ((course['midterm_grade'] * 4) / 100);
         })
@@ -36,33 +36,28 @@ export default function Summary({ user }) {
 
     return (
         <>
-        <div className='container'>
-            <div className='row'>
-                    <div className="col-12">
-                        <div className="summary-title mb-5">
-                            <h2 className="text-center">Summary</h2>
-                        </div>
-                    </div>
+            <div className='container'>
+                <div className='row'>
                     <div className="col-12">
                         <div className='summaries'>
                             <div className='gpa_summary position-relative'>
-                                <p>GPA</p>
                                 <div className='position-absolute gpa_summary_content summary_content'>
-                                <p className='text-center'>{gpa}</p>
+                                    <p className='text-center'>{gpa}</p>
                                 </div>
-                                <CircularProgress thickness={2.5} size='15em' variant="determinate" className='progressGPA' value={75} />
+                                <CircularProgress thickness={1.5} size='10em' variant="determinate" className='progressGPA' value={75} />
+                                <p className="summary-text">GPA</p>
                             </div>
                             <div className='semester_summary position-relative'>
-                                <p>Semester</p>
                                 <div className='position-absolute semester_summary_content summary_content'>
                                     <p className='text-center'>{percent + '%'}</p>
                                 </div>
-                                <CircularProgress thickness={2.5} size='15em' variant="determinate" className='progressSummary' value={percent} />
+                                <CircularProgress thickness={1.5} size='10em' variant="determinate" className='progressSummary' value={percent} />
+                                <p className="summary-text">Semester</p>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
         </>
     )
 }
