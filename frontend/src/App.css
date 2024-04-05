@@ -136,3 +136,9 @@ button:focus:not(:focus-visible) {
 .accordion-button:not(.collapsed) {
   color: #000;
 }
+
+@media only screen and (min-width: 1400px) {
+  #sidebar-ul {
+    width: 3%;
+  }
+}
