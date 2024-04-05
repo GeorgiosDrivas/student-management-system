@@ -60,8 +60,4 @@ export default function Summary({ user }) {
             </div>
         </>
     )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c4ffcbf (Dashboard styling and layout)
