@@ -9,33 +9,32 @@ export default function Dashboard({ data }) {
 
     return (
         <>
-        <main id="main">
-            <section className="position-relative">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="greeting-text mb-5">
-                                {
-                                    (data.students) ? (
-                                        <h1>Good {(date <= morning) ? 'morning' : 'afternoon'}, {data.students[0].name}</h1>
-                                    ) : null
+            <main id="main">
+                <section className="position-relative">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="greeting-text mb-5 greetings-message">
+                                    {
+                                        (data.students) ? (
+                                            <h1>Greatings, {data.students[0].name}!</h1>
+                                        ) : null
 
-                                }
-                                
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section className="dashboard-section position-relative">
-            <Summary user={data} />
-            </section>
-            <section className="dashboard-section position-relative">
-                <div className="container">
-                    <Semester user={data} />
-                </div>
-            </section>
-        </main>
+                </section>
+                <section className="dashboard-section position-relative">
+                    <Summary user={data} />
+                </section>
+                <section className="dashboard-section position-relative semester-section">
+                    <div className="container">
+                        <Semester user={data} />
+                    </div>
+                </section>
+            </main>
         </>
     )
 }
