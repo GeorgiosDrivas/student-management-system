@@ -137,8 +137,23 @@ button:focus:not(:focus-visible) {
   color: #000;
 }
 
-@media only screen and (min-width: 1400px) {
+.accordion-item:first-of-type .accordion-button {
+  border-radius: 0;
+}
+
+@media only screen and (min-width: 1600px) {
   #sidebar-ul {
     width: 3%;
   }
+}
+
+.semester-page-courses {
+  margin-top: 100px;
+}
+
+.newCourseForm input,
+.newCourseForm textarea {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px 20px;
 }

@@ -11,10 +11,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 function App() {
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+
   const [users, setUsers] = useState([]); // State to hold the users data
 
   useEffect(() => {
@@ -34,31 +31,6 @@ function App() {
 
     fetchUsers();
   }, []);
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch('http://localhost:3000/students', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ name, surname: String(surname) }), // Convert surname to string
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error('Failed to add student');
-  //     }
-  //     // Clear form fields on success
-  //     setName('');
-  //     setSurname('');
-  //     // Optionally, you can trigger a refetch of the data here
-  //   } catch (error) {
-  //     setError('Failed to add student');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <>
@@ -86,23 +58,6 @@ function App() {
         </div>
       </Router>
     </>
-    // <div>
-    //   <h2>Add Student</h2>
-    //   <form onSubmit={handleSubmit}>
-    //     <label>
-    //       Name:
-    //       <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-    //     </label>
-    //     <label>
-    //       Surname:
-    //       <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
-    //     </label>
-    //     <button type="submit" disabled={loading}>
-    //       {loading ? 'Adding...' : 'Add Student'}
-    //     </button>
-    //     {error && <p>{error}</p>}
-    //   </form>
-    // </div>
   );
 };
 
