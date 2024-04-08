@@ -1,8 +1,36 @@
-/* Styling */
+/* General styling */
 body {
   background-color: #f9fafc;
 }
 
+a {
+  text-decoration: none;
+}
+
+.accordion-item {
+  border: none;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent;
+  box-shadow: none;
+  border-top: 2px solid #000;
+}
+
+button:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #000;
+}
+
+.accordion-item:first-of-type .accordion-button {
+  border-radius: 0;
+}
+
+/* Dashboard */
 .summaries {
   display: inline-flex;
   gap: 50px;
@@ -57,6 +85,7 @@ body {
   font-size: 25px;
 }
 
+/* Articles */
 .article-wrap h2 {
   font-size: 17px;
 }
@@ -73,6 +102,8 @@ body {
   padding: 10px;
   border-radius: 10px;
 }
+
+/* Sidebar */
 
 .left-sidebar {
   overflow-y: scroll;
@@ -107,10 +138,6 @@ body {
   cursor: pointer;
 }
 
-a {
-  text-decoration: none;
-}
-
 #sidebar-ul li a {
   display: inline-flex;
   width: 100%;
@@ -118,34 +145,7 @@ a {
   height: 100%;
 }
 
-.accordion-item {
-  border: none;
-  box-shadow: none;
-}
-
-.accordion-button:not(.collapsed) {
-  background-color: transparent;
-  box-shadow: none;
-  border-top: 2px solid #000;
-}
-
-button:focus:not(:focus-visible) {
-  box-shadow: none;
-}
-
-.accordion-button:not(.collapsed) {
-  color: #000;
-}
-
-.accordion-item:first-of-type .accordion-button {
-  border-radius: 0;
-}
-
-@media only screen and (min-width: 1600px) {
-  #sidebar-ul {
-    width: 3%;
-  }
-}
+/* Semester page */
 
 .semester-page-courses {
   margin-top: 100px;
@@ -156,4 +156,11 @@ button:focus:not(:focus-visible) {
   margin-bottom: 20px;
   width: 100%;
   padding: 10px 20px;
+}
+
+/* Responsive */
+@media only screen and (min-width: 1600px) {
+  #sidebar-ul {
+    width: 3%;
+  }
 }
