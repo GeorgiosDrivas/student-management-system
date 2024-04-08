@@ -1,5 +1,5 @@
 import Summary from "./dashboard/Summary";
-import Semester from "./dashboard/Courses";
+import Semester from "./dashboard/Semester";
 
 
 export default function Dashboard({ data }) {

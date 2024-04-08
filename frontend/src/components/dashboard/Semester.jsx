@@ -23,7 +23,7 @@ export default function Semester({ user }) {
                                             </h2>
                                             <div id={'collapse' + course._id} className={`accordion-collapse collapse ${course._id === '65d7b1bfcc7bd8cbea93026f' ? 'show' : ''}`} aria-labelledby={'heading' + course._id} data-bs-parent="#accordionExample">
                                                 <div className="accordion-body">
-                                                    <p key={course._id}>{course.course_desc}</p>
+                                                    <p key={course._id}>{course.course_teacher}</p>
                                                 </div>
                                             </div>
                                         </div>

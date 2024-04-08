@@ -15,8 +15,8 @@ app.use(cors());
 // Route to add a new course
 app.post('/students', async (request, response) => {
     try {
-        const { course_name, course_desc, midterm_grade } = request.body; // Assuming the request body contains these fields
-        const newCourse = new Course({ course_name, course_desc, midterm_grade });
+        const { course_name, course_teacher, midterm_grade } = request.body; // Assuming the request body contains these fields
+        const newCourse = new Course({ course_name, course_teacher, midterm_grade });
         const savedCourse = await newCourse.save();
         return response.status(201).json(savedCourse);
     } catch (error) {

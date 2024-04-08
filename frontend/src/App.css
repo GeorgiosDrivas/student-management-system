@@ -1,10 +1,28 @@
 /* General styling */
+
 body {
   background-color: #f9fafc;
 }
 
 a {
   text-decoration: none;
+}
+
+.section-title,
+#main {
+  margin-top: 100px;
+}
+
+.button {
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 15px;
+  padding: 13px 20px;
+  transition: all, 0.3s;
+}
+
+.button:hover {
+  border-radius: 40px;
 }
 
 .accordion-item {
@@ -31,6 +49,7 @@ button:focus:not(:focus-visible) {
 }
 
 /* Dashboard */
+
 .summaries {
   display: inline-flex;
   gap: 50px;
@@ -62,10 +81,6 @@ button:focus:not(:focus-visible) {
 
 .dashboard-section {
   margin-bottom: 50px;
-}
-
-#main {
-  margin-top: 100px;
 }
 
 .greetings-message {
@@ -146,16 +161,32 @@ button:focus:not(:focus-visible) {
 }
 
 /* Semester page */
+.taught-p {
+  font-size: 15px;
+}
 
 .semester-page-courses {
   margin-top: 100px;
 }
 
-.newCourseForm input,
-.newCourseForm textarea {
+.form-wrap {
+  margin-top: 50px;
+}
+
+.grade-span {
+  font-size: 25px;
+}
+
+.newCourseForm input {
   margin-bottom: 20px;
   width: 100%;
-  padding: 10px 20px;
+  padding: 0 10px;
+  border-radius: 15px;
+  border: 1px solid #000;
+}
+
+.newCourseForm input {
+  height: 60px;
 }
 
 /* Responsive */

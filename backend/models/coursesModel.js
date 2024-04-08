@@ -5,7 +5,7 @@ const courseSchema = mongoose.Schema(
         course_name: {
             type: String,
         },
-        course_desc: {
+        course_teacher: {
             type: String,
         },
         midterm_grade: {
