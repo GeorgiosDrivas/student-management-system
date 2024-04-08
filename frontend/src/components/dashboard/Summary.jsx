@@ -3,13 +3,36 @@ import CircularProgress from '@mui/material/CircularProgress';
 export default function Summary({ user }) {
     let gpa = 0;
 
-    // Calculate the gpa based on the midterm grades
     if (user.courses && user.courses.length > 0) {
-        user.courses.map(course => {
-            gpa = gpa + ((course['midterm_grade'] * 4) / 100);
-        })
-        gpa = Math.round((gpa / 3) * 100) / 100;
+        let totalGradePoints = 0;
+        let totalCourses = user.courses.length;
+
+        user.courses.forEach(course => {
+            const grade = course['midterm_grade'];
+
+            // Convert grade to GPA scale
+            let gradePoint;
+            if (grade >= 90) {
+                gradePoint = 4.0;
+            } else if (grade >= 80) {
+                gradePoint = 3.0;
+            } else if (grade >= 70) {
+                gradePoint = 2.0;
+            } else if (grade >= 60) {
+                gradePoint = 1.0;
+            } else {
+                gradePoint = 0.0;
+            }
+
+            totalGradePoints += gradePoint;
+        });
+
+        let calculatedGPA = totalGradePoints / totalCourses;
+        gpa = Math.min(calculatedGPA, 4); // Ensure GPA doesn't exceed 4
+        gpa = Math.round(gpa * 100) / 100; // Round to two decimal places
     }
+
+    const gpaPercentage = (gpa / 4) * 100;
 
     let startDate = '';
     let endDate = '';
@@ -44,7 +67,13 @@ export default function Summary({ user }) {
                                 <div className='position-absolute gpa_summary_content summary_content'>
                                     <p className='text-center'>{gpa}</p>
                                 </div>
-                                <CircularProgress thickness={1.5} size='10em' variant="determinate" className='progressGPA' value={75} />
+                                <CircularProgress
+                                    thickness={1.5}
+                                    size='10em'
+                                    variant="determinate"
+                                    className='progressGPA'
+                                    value={gpaPercentage}
+                                />
                                 <p className="summary-text">GPA</p>
                             </div>
                             <div className='semester_summary position-relative'>
