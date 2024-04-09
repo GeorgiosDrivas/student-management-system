@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
 
-
-export default function SemesterSb({ data }) {
+export default function SemesterSb() {
 
     const [course_name, setCourseName] = useState('');
+    const [user, setUser] = useState([]);
     const [course_teacher, setCourseTeacher] = useState('');
     const [midterm_grade, setMidtermGrade] = useState('');
     const [loading, setLoading] = useState(false);
@@ -12,6 +12,25 @@ export default function SemesterSb({ data }) {
     const [showForm, setShowForm] = useState(false);
     const [showBtnText, setShowBtnText] = useState("Add new course");
     const [selectValue, setSelectValue] = useState("Summer semester");
+
+    useEffect(() => {
+        // Fetch users data when the component mounts
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/students');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const data = await response.json();
+                setUser(data);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
 
     const onValueChange = (event) => {
         const value = event.target.value;
@@ -50,7 +69,6 @@ export default function SemesterSb({ data }) {
         !showForm ? setShowBtnText("Hide Form") : setShowBtnText("Add new course");
     }
 
-
     return (
         <>
             <main>
@@ -60,9 +78,9 @@ export default function SemesterSb({ data }) {
                             <div className="section-title d-flex justify-content-between align-items-center">
                                 {selectValue && <h1 className="mt-3">{selectValue}</h1>}
                                 <select onChange={onValueChange} id="semester-select" placeholder="Choose a semester">
-                                    <option value="summer-semester">Summer semester</option>
-                                    <option value="spring-semester">Spring semester</option>
-                                    <option value="fall-semester">Fall semester</option>
+                                    <option value="Summer Semester">Summer semester</option>
+                                    <option value="Spring Semester">Spring semester</option>
+                                    <option value="Fall Semester">Fall semester</option>
                                 </select>
 
                             </div>
@@ -72,9 +90,9 @@ export default function SemesterSb({ data }) {
                         <div className="col-12">
                             <div className="semester-page-courses d-flex flex-column">
                                 {
-                                    (data.courses && data.courses.length > 0) ?
+                                    (user && user.courses && user.courses.length > 0) ?
                                         (
-                                            data.courses.map(course => (
+                                            user.courses.map(course => (
                                                 <div key={course._id} className="mb-5 d-flex flex-row justify-content-between align-items-start">
                                                     <div className="text-start">
                                                         <h2>{course.course_name}</h2>

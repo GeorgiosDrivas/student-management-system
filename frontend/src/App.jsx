@@ -42,7 +42,7 @@ function App() {
           <div className='col-12 col-lg-11 p-0'>
             <Routes>
               <Route exact path="/" element={<Dashboard data={users} />} />
-              <Route path="/semester" element={<SemesterSb data={users} />} />
+              <Route path="/semester" element={<SemesterSb />} />
               <Route path="/events" element={<Events user={users} />} />
               <Route path="/news" element={<News user={users} />} />
               <Route path="/settings" element={<Settings />} />

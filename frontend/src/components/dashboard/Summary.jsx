@@ -74,14 +74,14 @@ export default function Summary({ user }) {
                                     className='progressGPA'
                                     value={gpaPercentage}
                                 />
-                                <p className="summary-text">GPA</p>
+                                <p className="summary-text">Semester's GPA</p>
                             </div>
                             <div className='semester_summary position-relative'>
                                 <div className='position-absolute semester_summary_content summary_content'>
                                     <p className='text-center'>{percent + '%'}</p>
                                 </div>
                                 <CircularProgress thickness={1.5} size='10em' variant="determinate" className='progressSummary' value={percent} />
-                                <p className="summary-text">Semester</p>
+                                <p className="summary-text">Semester Completion</p>
                             </div>
                         </div>
                     </div>

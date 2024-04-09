@@ -22,7 +22,7 @@ export default function Dashboard({ data }) {
                                             <div className="greeting-text mb-5 greetings-message">
                                                 {
                                                     (data.students) ? (
-                                                        <h1>Greatings, {data.students[0].name}!</h1>
+                                                        <h1>Greetings, {data.students[0].name}!</h1>
                                                     ) : null
 
                                                 }
