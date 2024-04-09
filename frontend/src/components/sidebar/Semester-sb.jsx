@@ -11,6 +11,12 @@ export default function SemesterSb({ data }) {
     const [error, setError] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [showBtnText, setShowBtnText] = useState("Add new course");
+    const [selectValue, setSelectValue] = useState("Summer semester");
+
+    const onValueChange = (event) => {
+        const value = event.target.value;
+        setSelectValue(value);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,7 +57,15 @@ export default function SemesterSb({ data }) {
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                            <h1 className="section-title">Semester</h1>
+                            <div className="section-title d-flex justify-content-between align-items-center">
+                                {selectValue && <h1 className="mt-3">{selectValue}</h1>}
+                                <select onChange={onValueChange} id="semester-select" placeholder="Choose a semester">
+                                    <option value="summer-semester">Summer semester</option>
+                                    <option value="spring-semester">Spring semester</option>
+                                    <option value="fall-semester">Fall semester</option>
+                                </select>
+
+                            </div>
                         </div>
                     </div>
                     <div className="row">

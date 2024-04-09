@@ -194,6 +194,12 @@ button:focus:not(:focus-visible) {
   height: 60px;
 }
 
+#semester-select {
+  background: transparent;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 /* Events page */
 .event-date {
   background-color: #1976d2;
