@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar';
 import News from './components/News';
 import SemesterSb from './components/sidebar/Semester-sb';
 import Logout from './components/sidebar/Logout-sb';
-import Events from './components/dashboard/Events';
+import Events from './components/sidebar/Events-sb';
 import Settings from './components/sidebar/Settings-sb';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ function App() {
           <div className='col-12 col-lg-1 p-0'>
             <Sidebar />
           </div>
-          <div className='col-12 col-lg-7'>
+          <div className='col-12 col-lg-11 p-0'>
             <Routes>
               <Route exact path="/" element={<Dashboard data={users} />} />
               <Route path="/semester" element={<SemesterSb data={users} />} />
@@ -48,12 +48,6 @@ function App() {
               <Route path="/settings" element={<Settings />} />
               <Route path="/logout" element={<Logout />} />
             </Routes>
-          </div>
-          <div className="col-12 col-lg-4">
-            <div className='left-sidebar position-fixed'>
-              <News user={users} />
-              <Events user={users} />
-            </div>
           </div>
         </div>
       </Router>

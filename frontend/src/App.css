@@ -61,12 +61,22 @@ button:focus:not(:focus-visible) {
   left: calc(100% - 62%);
 }
 
+.semester_page_summary_content {
+  top: calc(100% - 65%);
+  left: calc(100% - 89%);
+}
+
 .summary_content h2 {
   font-size: 20px;
 }
 
 .summary_content p {
   font-size: 35px;
+  margin: 0;
+}
+
+.semester_page_summary_content p {
+  font-size: 20px;
   margin: 0;
 }
 
@@ -121,12 +131,7 @@ button:focus:not(:focus-visible) {
 /* Sidebar */
 
 .left-sidebar {
-  overflow-y: scroll;
   background: #fff;
-  height: 100%;
-  scrollbar-width: 5px;
-  scrollbar-color: red;
-  border-left: 1px solid #f9fafc;
 }
 
 #sidebar-ul {
@@ -187,6 +192,15 @@ button:focus:not(:focus-visible) {
 
 .newCourseForm input {
   height: 60px;
+}
+
+/* Events page */
+.event-date {
+  background-color: #1976d2;
+  border-radius: 20px;
+  color: #fff;
+  padding: 10px;
+  width: 150px;
 }
 
 /* Responsive */
