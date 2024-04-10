@@ -27,10 +27,10 @@ export default function Events({ user }) {
                                     if (currentDate === eventDate) {
                                         return (
                                             < div className="col-12" key={event._id} >
-                                                <div className="text-center">
-                                                    <h2>{event.event_name}</h2>
-                                                    <div className="event_content">
-                                                        <p>Today at {event.event_place}</p>
+                                                <div className="mb-5">
+                                                    <h2 className="text-start m-0">{event.event_name}</h2>
+                                                    <div className="event_content m-0">
+                                                        <p className="m-0">Place: <span className="fw-bold">{event.event_place}</span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -44,7 +44,7 @@ export default function Events({ user }) {
                     }
                 </div>
                 <div className="w-100 d-flex justify-content-center">
-                    <button className="button">View all events</button>
+                    <a className="button" href="/events" title="View all events">View all events</a>
                 </div>
             </div >
         </>

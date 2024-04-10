@@ -12,7 +12,7 @@ export default function Semester({ user }) {
                 {
                     (user.courses && user.courses.length > 0) ?
                         (
-                            user.courses.map(course => (
+                            user.courses.filter((course) => course.semester === "Summer Semester").map(course => (
                                 <div className="col-12 col-lg-6" key={course._id}>
                                     <div id="dashboard_single_course" className="mb-5 accordion-item">
                                         <h2 className="text-center">{course.course_name}</h2>
@@ -25,6 +25,13 @@ export default function Semester({ user }) {
                             ))
                         ) : null
                 }
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <div className="sem-btn d-flex justify-content-center">
+                        <a href="/semester" className="button" title="Semester">View all</a>
+                    </div>
+                </div>
             </div>
         </>
     )

@@ -41,6 +41,18 @@ export default function Dashboard({ data }) {
                             </section>
                         </div>
                         <div className="col-12 col-lg-4">
+                            {(data.students) ? (
+                                console.log(data.students[0].image),
+                                <div className="d-flex justify-contennt-center align-items-center mb-3">
+                                    <div className="profile-pic position-relative">
+                                        <img src={data.students[0].image} alt={data.students[0].name + '`s Image'} />
+                                    </div>
+                                    <div>
+                                        <p className="m-0 profile-text text-center">{data.students[0].name} {data.students[0].surname}</p>
+                                        <p className="m-0 profile-year">{data.students[0].year}</p>
+                                    </div>
+                                </div>
+                            ) : null}
                             <div className='right-sidebar py-4'>
                                 <News user={data} />
                                 <Events user={data} />

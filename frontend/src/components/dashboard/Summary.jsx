@@ -5,9 +5,10 @@ export default function Summary({ user }) {
 
     if (user.courses && user.courses.length > 0) {
         let totalGradePoints = 0;
-        let totalCourses = user.courses.length;
+        const summerCourses = user.courses.filter(course => course.semester === 'Summer Semester');
+        let totalCourses = summerCourses.length;
 
-        user.courses.filter(course => course.semester === 'Summer Semester').forEach(course => {
+        summerCourses.forEach(course => {
             const grade = course['midterm_grade'];
 
             let gradePoint;
