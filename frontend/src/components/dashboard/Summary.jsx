@@ -7,10 +7,9 @@ export default function Summary({ user }) {
         let totalGradePoints = 0;
         let totalCourses = user.courses.length;
 
-        user.courses.forEach(course => {
+        user.courses.filter(course => course.semester === 'Summer Semester').forEach(course => {
             const grade = course['midterm_grade'];
 
-            // Convert grade to GPA scale
             let gradePoint;
             if (grade >= 90) {
                 gradePoint = 4.0;
@@ -42,7 +41,6 @@ export default function Summary({ user }) {
         startDate = new Date(user.semester[0].start.slice(0, 10));
         endDate = new Date(user.semester[0].end.slice(0, 10));
     }
-    // Function to calculate the difference between start and end dates and return the persent based on the current date
     function percentageOfTimeElapsed(startDate, endDate) {
         const currentDate = new Date();
         const totalDifferenceMilliseconds = endDate.getTime() - startDate.getTime();
