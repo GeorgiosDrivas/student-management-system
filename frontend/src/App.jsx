@@ -12,10 +12,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
 
-  const [users, setUsers] = useState([]); // State to hold the users data
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Fetch users data when the component mounts
     const fetchUsers = async () => {
       try {
         const response = await fetch('http://localhost:3000/students');

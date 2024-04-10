@@ -41,7 +41,7 @@ export default function Dashboard({ data }) {
                             </section>
                         </div>
                         <div className="col-12 col-lg-4">
-                            <div className='left-sidebar'>
+                            <div className='right-sidebar py-4'>
                                 <News user={data} />
                                 <Events user={data} />
                             </div>

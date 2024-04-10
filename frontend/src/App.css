@@ -2,6 +2,7 @@
 
 body {
   background-color: #f9fafc;
+  overflow-x: hidden;
 }
 
 a {
@@ -40,6 +41,7 @@ button:focus:not(:focus-visible) {
   border-radius: 40px;
   background-color: #fff;
   justify-content: space-evenly;
+  transition: all, 0.3s;
 }
 
 .gpa_summary_content,
@@ -126,7 +128,7 @@ button:focus:not(:focus-visible) {
 
 /* Sidebar */
 
-.left-sidebar {
+.right-sidebar {
   background: #fff;
 }
 

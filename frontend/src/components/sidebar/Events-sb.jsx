@@ -21,13 +21,15 @@ export default function Events({ user }) {
                                 (user && user.events && user.events.length > 0) ?
                                     (
                                         user.events.map(event => (
+
                                             <div className="col-12 col-lg-4" key={event._id}>
-                                                <div className="text-start p-3 event_wrap mb-5">
-                                                    <h2 className="mb-4">{event.event_name}</h2>
+                                                <div className="text-start p-3 event_wrap mb-5 pb-0">
+                                                    <h2 className="mb-4 text-center">{event.event_name}</h2>
                                                     <div className="event_content">
-                                                        <p className="text-center">{event.event_desc}...</p>
-                                                        <div className="d-flex justify-content-center mt-5">
-                                                            <p className="text-center event-date">{new Date(event.event_date).toLocaleDateString('en-US', dateOptions)}</p>
+                                                        <p className="text-center">{event.event_desc}</p>
+                                                        <div className="d-flex flex-column mt-5">
+                                                            <p>Date: {new Date(event.event_date).toLocaleDateString('en-US', dateOptions)}</p>
+                                                            <p>Place: {event.event_place}</p>
                                                         </div>
                                                     </div>
                                                 </div>
