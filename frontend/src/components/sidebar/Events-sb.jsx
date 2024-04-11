@@ -8,7 +8,7 @@ export default function Events({ user }) {
 
     return (
         <>
-            <main>
+            <main className="section-title">
                 <div className="container">
                     <div className="row">
                         <div className="col-12 mb-5">

@@ -1,7 +1,9 @@
-export default function Settings(){
-    return(
+export default function Settings() {
+    return (
         <>
-            <h1>Settings</h1>
+            <main className="section-title">
+                <h1>Settings</h1>
+            </main>
         </>
     )
 }

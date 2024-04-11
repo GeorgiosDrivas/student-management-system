@@ -29,7 +29,7 @@ export default function Semester({ user }) {
             <div className="row">
                 <div className="col-12">
                     <div className="sem-btn d-flex justify-content-center">
-                        <a href="/semester" className="button" title="Semester">View all</a>
+                        <a href="/semester" className="button" title="View all semesters">View all semesters</a>
                     </div>
                 </div>
             </div>

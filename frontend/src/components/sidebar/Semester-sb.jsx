@@ -89,11 +89,11 @@ export default function SemesterSb() {
 
     return (
         <>
-            <main>
+            <main className="section-title">
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                            <div className="section-title d-flex justify-content-between align-items-center">
+                            <div className="d-flex justify-content-between align-items-center">
                                 {selectValue && <h1 className="mt-3">{selectValue}</h1>}
                                 <select onChange={onValueChange} id="semester-select" placeholder="Choose a semester">
                                     <option value="Summer Semester">Summer semester</option>

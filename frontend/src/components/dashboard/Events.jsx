@@ -20,27 +20,31 @@ export default function Events({ user }) {
                 </div>
                 <div className="row">
                     {
-                        (user && user.events && user.events.length > 0) ?
-                            (
-                                user.events.map(event => {
-                                    eventDate = new Date(event.event_date).toLocaleDateString("en-US", dateOptions);
-                                    if (currentDate === eventDate) {
-                                        return (
-                                            < div className="col-12" key={event._id} >
-                                                <div className="mb-5">
-                                                    <h2 className="text-start m-0">{event.event_name}</h2>
-                                                    <div className="event_content m-0">
-                                                        <p className="m-0">Place: <span className="fw-bold">{event.event_place}</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    } else {
-                                        return null;
-                                    }
-                                }
-                                )
-                            ) : null
+                        user && user.events ? (
+                            user.events.filter(event => {
+                                const eventDate = new Date(event.event_date).toLocaleDateString("en-US", dateOptions);
+                                return currentDate === eventDate;
+                            }).map(event => (
+                                <div className="col-12" key={event._id}>
+                                    <div className="mb-5">
+                                        <h2 className="text-start m-0">{event.event_name}</h2>
+                                        <div className="event_content m-0">
+                                            <p className="m-0">Place: <span className="fw-bold">{event.event_place}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : null
+                    }
+                    {
+                        user && user.events && user.events.every(event => {
+                            const eventDate = new Date(event.event_date).toLocaleDateString("en-US", dateOptions);
+                            return currentDate !== eventDate;
+                        }) && (
+                            <div className="col-12">
+                                <p className="text-center">There are no events happening today</p>
+                            </div>
+                        )
                     }
                 </div>
                 <div className="w-100 d-flex justify-content-center">

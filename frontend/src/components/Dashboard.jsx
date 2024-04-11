@@ -42,7 +42,6 @@ export default function Dashboard({ data }) {
                         </div>
                         <div className="col-12 col-lg-4">
                             {(data.students) ? (
-                                console.log(data.students[0].image),
                                 <div className="d-flex justify-contennt-center align-items-center mb-3">
                                     <div className="profile-pic position-relative">
                                         <img src={data.students[0].image} alt={data.students[0].name + '`s Image'} />

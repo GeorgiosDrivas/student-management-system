@@ -1,7 +1,9 @@
-export default function News(){
-    return(
+export default function News() {
+    return (
         <>
-            <h1>News</h1>
+            <main className="section-title">
+                <h1>News</h1>
+            </main>
         </>
     )
 }
