@@ -250,4 +250,10 @@ button:focus:not(:focus-visible) {
   height: 100vh;
   padding: 20px;
   background-color: #fff;
+  width: 40%;
+}
+
+.single-article-close-icon {
+  background: transparent;
+  border: none;
 }

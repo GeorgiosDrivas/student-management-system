@@ -14,12 +14,12 @@ export default function NewsArticles({ article, id, title, desc }) {
             <div className="article-wrap" onClick={handleClick} key={id}>
                 <h2>{title}</h2>
                 <div className="article-content">
-                    <p>{desc}</p>
+                    <p>{desc.slice(0, 100)}...</p>
                 </div>
             </div>
             {
                 showArticle && (
-                    <SingleArticle article={article} />
+                    <SingleArticle article={article} setShowArticle={setShowArticle} />
                 )
             }
         </div>
