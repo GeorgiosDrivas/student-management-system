@@ -2,7 +2,7 @@ import './App.css'
 import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard';
 import Sidebar from './components/Sidebar';
-import News from './components/News';
+import News from './components/sidebar/News-sb';
 import SemesterSb from './components/sidebar/Semester-sb';
 import Logout from './components/sidebar/Logout-sb';
 import Events from './components/sidebar/Events-sb';

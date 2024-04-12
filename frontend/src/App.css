@@ -241,3 +241,13 @@ button:focus:not(:focus-visible) {
     width: 3%;
   }
 }
+
+/* Articles */
+.single-article-details {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  padding: 20px;
+  background-color: #fff;
+}
