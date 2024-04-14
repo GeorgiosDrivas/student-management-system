@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import ExercisesArticles from './ExercisesArticles';
 
-export default function Exercises({ data }) {
+export default function Exercises() {
 
     const [exercise_subject, setExercise_subject] = useState("Introduction to Biology");
     const [selectStatusValue, setselectStatusValue] = useState("Publish");
@@ -8,28 +9,55 @@ export default function Exercises({ data }) {
     const [exercise_name, setExercise_name] = useState("");
     const [exercise_content, setExercise_content] = useState("");
     const [error, setError] = useState("");
+    const [data, setData] = useState([]);
+    const [exercises, setExercises] = useState([]);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/courses');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setData(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+
+    useEffect(() => {
+        const fetchExercises = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/exercises');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setExercises(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchExercises();
+    }, []);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        // if (requestCounter >= maxRequestsPerMinute) {
-        //     console.log('Maximum number of requests exceeded. Please try again later.');
-        //     return;
-        // }
 
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:3000/students', {
+            const response = await fetch('http://localhost:3000/exercises', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ exercise_name, exercise_subject, exercise_content }),
             });
-
-            if (!response.ok) {
-                throw new Error('You can take up to 4 courses per semester');
-            }
             setExercise_name('');
             setExercise_content('');
 
@@ -46,7 +74,21 @@ export default function Exercises({ data }) {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h1>Exercises</h1>
+                        <h2>Submitted Exercises</h2>
+                        <div>
+                            {
+                                exercises && exercises.exercises && (
+                                    exercises.exercises.map(exercise => (
+                                        <ExercisesArticles exercise={exercise} title={exercise.exercise_name} id={exercise._id} content={exercise.exercise_content} subject={exercise.exercise_subject} />
+                                    ))
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <h2>Exercises</h2>
                     </div>
                     <div className="col-12">
                         <form className="newCourseForm">

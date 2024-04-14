@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post('/students', async (request, response) => {
+app.post('/exercises', async (request, response) => {
     try {
         const { exercise_name, exercise_subject, exercise_content } = request.body;
         const newExercise = new Exercise({ exercise_name, exercise_subject, exercise_content });
@@ -27,6 +27,19 @@ app.post('/students', async (request, response) => {
 
 app.get('/', (request, response) => {
     response.send("Welcome to Student Management System");
+});
+
+//News Endpoint
+app.get('/exercises', async (request, response) => {
+    try {
+        const exercises = await Exercise.find({});
+
+        const data = { exercises };
+        return response.status(200).json(data);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
 });
 
 //News Endpoint
