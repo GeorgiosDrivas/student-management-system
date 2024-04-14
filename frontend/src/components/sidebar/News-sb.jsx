@@ -1,6 +1,26 @@
 import NewsArticles from './NewsArticles';
+import { useState, useEffect } from 'react';
 
-export default function News({ user }) {
+export default function News() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/news');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const data = await response.json();
+                setData(data);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchNews();
+    }, []);
 
     return (
         <>
@@ -16,8 +36,8 @@ export default function News({ user }) {
                         </div>
                         <div className="row">
                             {
-                                (user && user.news && user.news.length > 0) ? (
-                                    user.news.map(article => (
+                                (data && data.news) ? (
+                                    data.news.map(article => (
                                         <NewsArticles article={article} id={article._id} title={article.news_title} desc={article.news_desc} />
                                     ))
                                 ) : null

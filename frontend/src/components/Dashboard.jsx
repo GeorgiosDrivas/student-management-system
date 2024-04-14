@@ -2,12 +2,30 @@ import Summary from "./dashboard/Summary";
 import Semester from "./dashboard/Semester";
 import News from './News';
 import Events from './dashboard/Events';
+import { useState, useEffect } from 'react';
 
-
-export default function Dashboard({ data }) {
+export default function Dashboard() {
     // Declare date variables for greeting message
     let date = new Date().getHours();
     const morning = 12;
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/students');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setData(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchUsers();
+    }, []);
 
     return (
         <>
@@ -36,7 +54,7 @@ export default function Dashboard({ data }) {
                             </section>
                             <section className="dashboard-section position-relative semester-section">
                                 <div className="container">
-                                    <Semester user={data} />
+                                    <Semester />
                                 </div>
                             </section>
                         </div>
@@ -53,8 +71,8 @@ export default function Dashboard({ data }) {
                                 </div>
                             ) : null}
                             <div className='right-sidebar py-4'>
-                                <News user={data} />
-                                <Events user={data} />
+                                <News />
+                                <Events />
                             </div>
                         </div>
                     </div>

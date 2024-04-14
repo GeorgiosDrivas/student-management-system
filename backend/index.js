@@ -29,15 +29,63 @@ app.get('/', (request, response) => {
     response.send("Welcome to Student Management System");
 });
 
+//News Endpoint
+app.get('/news', async (request, response) => {
+    try {
+        const news = await News.find({});
+
+        const data = { news };
+        return response.status(200).json(data);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+//Events Endpoint
+app.get('/events', async (request, response) => {
+    try {
+        const events = await Events.find({});
+
+        const data = { events };
+        return response.status(200).json(data);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+//Semester Endpoint
+app.get('/semester', async (request, response) => {
+    try {
+        const semester = await Semester.find({});
+
+        const data = { semester };
+        return response.status(200).json(data);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+//Courses Endpoint
+app.get('/courses', async (request, response) => {
+    try {
+        const courses = await Course.find({});
+        const data = { courses };
+        return response.status(200).json(data);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+//Students Endpoint
 app.get('/students', async (request, response) => {
     try {
         const students = await Student.find({});
-        const courses = await Course.find({});
-        const semester = await Semester.find({});
-        const events = await Events.find({});
-        const news = await News.find({});
 
-        const data = { students, courses, semester, events, news };
+        const data = { students };
         return response.status(200).json(data);
     } catch (error) {
         console.log(error.message);

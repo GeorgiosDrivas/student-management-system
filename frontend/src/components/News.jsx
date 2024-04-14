@@ -1,4 +1,24 @@
-export default function News({ user }) {
+import { useState, useEffect } from 'react';
+
+export default function News() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/news');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const data = await response.json();
+                setData(data);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchNews();
+    }, []);
     return (
         <>
             <section className="dashboard-section position-relative">
@@ -12,8 +32,8 @@ export default function News({ user }) {
                     </div>
                     <div className="row">
                         {
-                            (user && user.news && user.news.length > 0) ? (
-                                user.news.map(article => (
+                            (data && data.news) ? (
+                                data.news.map(article => (
                                     <div className="col-12" key={article._id}>
                                         <div className="article-wrap" key={article._id}>
                                             <h2>{article.news_title}</h2>

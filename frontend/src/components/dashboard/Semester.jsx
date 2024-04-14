@@ -1,4 +1,26 @@
-export default function Semester({ user }) {
+import { useState, useEffect } from 'react';
+
+export default function Semester() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/courses');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setData(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
     return (
         <>
             <div className="row">
@@ -10,9 +32,9 @@ export default function Semester({ user }) {
             </div>
             <div className="row">
                 {
-                    (user.courses && user.courses.length > 0) ?
+                    (data.courses) ?
                         (
-                            user.courses.filter((course) => course.semester === "Summer Semester").map(course => (
+                            data.courses.filter((course) => course.semester === "Summer Semester").map(course => (
                                 <div className="col-12 col-lg-6" key={course._id}>
                                     <div id="dashboard_single_course" className="mb-5 accordion-item">
                                         <h2 className="text-center">{course.course_name}</h2>

@@ -1,5 +1,4 @@
 import './App.css'
-import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard';
 import Sidebar from './components/Sidebar';
 import News from './components/sidebar/News-sb';
@@ -13,25 +12,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
 
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/students');
-        if (!response.ok) {
-          throw new Error('Failed to fetch students data');
-        }
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        setError('Failed to fetch students data');
-      }
-    };
-
-    fetchUsers();
-  }, []);
-
   return (
     <>
       <Router>
@@ -41,11 +21,11 @@ function App() {
           </div>
           <div className='col-12 col-lg-11 p-0'>
             <Routes>
-              <Route exact path="/" element={<Dashboard data={users} />} />
+              <Route exact path="/" element={<Dashboard />} />
               <Route path="/semester" element={<SemesterSb />} />
-              <Route path="/events" element={<Events user={users} />} />
-              <Route path="/news" element={<News user={users} />} />
-              <Route path="/exercises" element={<Exercises data={users} />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/exercises" element={<Exercises />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/logout" element={<Logout />} />
             </Routes>

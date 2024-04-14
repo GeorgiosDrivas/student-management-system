@@ -1,4 +1,6 @@
-export default function Events({ user }) {
+import { useState, useEffect } from 'react';
+
+export default function Events() {
 
     const dateOptions = {
         year: 'numeric',
@@ -7,6 +9,26 @@ export default function Events({ user }) {
     };
     const currentDate = new Date().toLocaleDateString("en-US", dateOptions);
     let eventDate = '';
+
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/events');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setData(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchUsers();
+    }, []);
 
     return (
         <>
@@ -20,8 +42,8 @@ export default function Events({ user }) {
                 </div>
                 <div className="row">
                     {
-                        user && user.events ? (
-                            user.events.filter(event => {
+                        data && data.events ? (
+                            data.events.filter(event => {
                                 const eventDate = new Date(event.event_date).toLocaleDateString("en-US", dateOptions);
                                 return currentDate === eventDate;
                             }).map(event => (
@@ -37,7 +59,7 @@ export default function Events({ user }) {
                         ) : null
                     }
                     {
-                        user && user.events && user.events.every(event => {
+                        data && data.events && data.events.every(event => {
                             const eventDate = new Date(event.event_date).toLocaleDateString("en-US", dateOptions);
                             return currentDate !== eventDate;
                         }) && (

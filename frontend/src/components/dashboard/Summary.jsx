@@ -1,11 +1,32 @@
 import CircularProgress from '@mui/material/CircularProgress';
+import { useState, useEffect } from 'react';
 
-export default function Summary({ user }) {
+
+export default function Summary() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/courses');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setData(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchUsers();
+    }, []);
     let gpa = 0;
 
-    if (user.courses && user.courses.length > 0) {
+    if (data.courses) {
         let totalGradePoints = 0;
-        const summerCourses = user.courses.filter(course => course.semester === 'Summer Semester');
+        const summerCourses = data.courses.filter(course => course.semester === 'Summer Semester');
         let totalCourses = summerCourses.length;
 
         summerCourses.forEach(course => {
@@ -34,27 +55,27 @@ export default function Summary({ user }) {
 
     const gpaPercentage = (gpa / 4) * 100;
 
-    let startDate = '';
-    let endDate = '';
-    let percent = 0;
+    // let startDate = '';
+    // let endDate = '';
+    // let percent = 0;
 
-    if (user.semester && user.semester.length > 0) {
-        startDate = new Date(user.semester[0].start.slice(0, 10));
-        endDate = new Date(user.semester[0].end.slice(0, 10));
-    }
-    function percentageOfTimeElapsed(startDate, endDate) {
-        const currentDate = new Date();
-        const totalDifferenceMilliseconds = endDate.getTime() - startDate.getTime();
-        const elapsedDifferenceMilliseconds = currentDate.getTime() - startDate.getTime();
+    // if (user.semester && user.semester.length > 0) {
+    //     startDate = new Date(user.semester[0].start.slice(0, 10));
+    //     endDate = new Date(user.semester[0].end.slice(0, 10));
+    // }
+    // function percentageOfTimeElapsed(startDate, endDate) {
+    //     const currentDate = new Date();
+    //     const totalDifferenceMilliseconds = endDate.getTime() - startDate.getTime();
+    //     const elapsedDifferenceMilliseconds = currentDate.getTime() - startDate.getTime();
 
-        const percentageElapsed = (elapsedDifferenceMilliseconds / totalDifferenceMilliseconds) * 100;
-        return percentageElapsed;
-    }
+    //     const percentageElapsed = (elapsedDifferenceMilliseconds / totalDifferenceMilliseconds) * 100;
+    //     return percentageElapsed;
+    // }
 
-    if (startDate !== '' && endDate !== '') {
-        const percentageElapsed = percentageOfTimeElapsed(startDate, endDate);
-        percent = Math.round(percentageElapsed.toFixed(2));
-    }
+    // if (startDate !== '' && endDate !== '') {
+    //     const percentageElapsed = percentageOfTimeElapsed(startDate, endDate);
+    //     percent = Math.round(percentageElapsed.toFixed(2));
+    // }
 
     return (
         <>
@@ -75,13 +96,13 @@ export default function Summary({ user }) {
                                 />
                                 <p className="summary-text">Semester's GPA</p>
                             </div>
-                            <div className='semester_summary position-relative'>
+                            {/* <div className='semester_summary position-relative'>
                                 <div className='position-absolute semester_summary_content summary_content'>
                                     <p className='text-center'>{percent + '%'}</p>
                                 </div>
                                 <CircularProgress thickness={1.5} size='10em' variant="determinate" className='progressSummary' value={percent} />
                                 <p className="summary-text">Semester Completion</p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
