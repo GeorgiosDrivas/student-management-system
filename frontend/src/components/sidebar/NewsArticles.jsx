@@ -10,7 +10,7 @@ export default function NewsArticles({ article, id, title, desc }) {
     }
 
     return (
-        <div className="col-12" key={id}>
+        <div className="col-12 col-lg-6" key={id}>
             <div className="article-wrap" onClick={handleClick} key={id}>
                 <h2>{title}</h2>
                 <div className="article-content">

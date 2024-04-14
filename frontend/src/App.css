@@ -98,12 +98,11 @@ button:focus:not(:focus-visible) {
 }
 
 .event_wrap {
-  border: 1px solid;
   border-radius: 10px;
   display: flex;
+  background-color: #fff;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 17px;
 }
 
 .dashboard-section {
@@ -220,7 +219,7 @@ button:focus:not(:focus-visible) {
   height: 60px;
 }
 
-#semester-select {
+.select-element {
   background: transparent;
   padding: 10px 20px;
   border-radius: 10px;

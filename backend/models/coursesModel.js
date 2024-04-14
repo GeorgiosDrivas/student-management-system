@@ -10,6 +10,9 @@ const courseSchema = mongoose.Schema(
         },
         midterm_grade: {
             type: Number,
+        },
+        semester: {
+            type: String,
         }
     }
 );

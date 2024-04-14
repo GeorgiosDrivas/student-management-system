@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import News from './components/sidebar/News-sb';
 import SemesterSb from './components/sidebar/Semester-sb';
 import Logout from './components/sidebar/Logout-sb';
+import Exercises from './components/sidebar/Exercises';
 import Events from './components/sidebar/Events-sb';
 import Settings from './components/sidebar/Settings-sb';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -44,6 +45,7 @@ function App() {
               <Route path="/semester" element={<SemesterSb />} />
               <Route path="/events" element={<Events user={users} />} />
               <Route path="/news" element={<News user={users} />} />
+              <Route path="/exercises" element={<Exercises data={users} />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/logout" element={<Logout />} />
             </Routes>

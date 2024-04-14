@@ -1,22 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function SemesterSb() {
 
-    const [course_name, setCourseName] = useState('');
     const [user, setUser] = useState([]);
-    const [course_teacher, setCourseTeacher] = useState('');
-    const [midterm_grade, setMidtermGrade] = useState('');
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [showForm, setShowForm] = useState(false);
-    const [showBtnText, setShowBtnText] = useState("Add new course");
     const [selectValue, setSelectValue] = useState("Summer Semester");
-    const inputRef = useRef(null);
-
-    useEffect(() => {
-        inputRef.current?.focus();
-    }, [showForm]);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -35,52 +25,11 @@ export default function SemesterSb() {
         fetchUsers();
     }, []);
 
-
-
-
     const onValueChange = (event) => {
         event.preventDefault();
         const value = event.target.value;
         setSelectValue(value);
     }
-
-    let requestCounter = 0;
-    const maxRequestsPerMinute = 1;
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (requestCounter >= maxRequestsPerMinute) {
-            console.log('Maximum number of requests exceeded. Please try again later.');
-            return;
-        }
-
-        setLoading(true);
-        try {
-            const response = await fetch('http://localhost:3000/students', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ course_name, course_teacher, midterm_grade }),
-            });
-
-            // Increment the request counter after making the request
-            requestCounter++;
-
-            if (!response.ok) {
-                throw new Error('Failed to add student');
-            }
-            setCourseName('');
-            setCourseTeacher('');
-            setMidtermGrade('');
-        } catch (error) {
-            setError('Failed to add student');
-            console.log(error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleShowClick = () => {
         setShowForm(!showForm);
@@ -95,7 +44,7 @@ export default function SemesterSb() {
                         <div className="col-12">
                             <div className="d-flex justify-content-between align-items-center">
                                 {selectValue && <h1 className="mt-3">{selectValue}</h1>}
-                                <select onChange={onValueChange} id="semester-select" placeholder="Choose a semester">
+                                <select onChange={onValueChange} className="select-element" placeholder="Choose a semester">
                                     <option value="Summer Semester">Summer semester</option>
                                     <option value="Spring Semester">Spring semester</option>
                                     <option value="Fall Semester">Fall semester</option>
@@ -160,31 +109,6 @@ export default function SemesterSb() {
                             </div>
                         </div>
                     </div>
-                    {
-                        (selectValue === 'Summer Semester') ? (
-                            <div className="row">
-                                <div className="col-12">
-                                    <button className="button" onClick={() => handleShowClick()}>{showBtnText}</button>
-
-                                    {
-                                        showForm && (
-                                            <div className="form-wrap">
-                                                <h2 className="mb-4">Add Course</h2>
-                                                <form className="mb-5 newCourseForm d-flex flex-column justify-content-center align-items-center">
-                                                    <input ref={inputRef} placeholder="Course Name" type="text" value={course_name} onChange={(e) => setCourseName(e.target.value)} />
-                                                    <input placeholder="Teacher" rows='3' value={course_teacher} onChange={(e) => setCourseTeacher(e.target.value)} />
-                                                    <input placeholder="Course midterm grade" type="number" value={midterm_grade} onChange={(e) => setMidtermGrade(e.target.value)} />
-                                                    <button className="align-self-start button" type="submit" disabled={loading} onClick={handleSubmit}>
-                                                        {loading ? 'Adding...' : 'Add course'}
-                                                    </button>
-                                                    {error && <p>{error}</p>}
-                                                </form>
-                                            </div>
-                                        )}
-                                </div>
-                            </div>
-                        ) : null
-                    }
                 </div>
             </main>
         </>
