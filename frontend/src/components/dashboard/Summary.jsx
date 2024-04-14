@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 export default function Summary() {
 
     const [data, setData] = useState([]);
+    const [semester, setSemester] = useState([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -22,6 +23,25 @@ export default function Summary() {
 
         fetchUsers();
     }, []);
+
+
+    useEffect(() => {
+        const fetchSemester = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/semester');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setSemester(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchSemester();
+    }, []);
+
     let gpa = 0;
 
     if (data.courses) {
@@ -55,27 +75,27 @@ export default function Summary() {
 
     const gpaPercentage = (gpa / 4) * 100;
 
-    // let startDate = '';
-    // let endDate = '';
-    // let percent = 0;
+    let startDate = '';
+    let endDate = '';
+    let percent = 0;
 
-    // if (user.semester && user.semester.length > 0) {
-    //     startDate = new Date(user.semester[0].start.slice(0, 10));
-    //     endDate = new Date(user.semester[0].end.slice(0, 10));
-    // }
-    // function percentageOfTimeElapsed(startDate, endDate) {
-    //     const currentDate = new Date();
-    //     const totalDifferenceMilliseconds = endDate.getTime() - startDate.getTime();
-    //     const elapsedDifferenceMilliseconds = currentDate.getTime() - startDate.getTime();
+    if (semester.semester && semester.semester.length > 0) {
+        startDate = new Date(semester.semester[0].start.slice(0, 10));
+        endDate = new Date(semester.semester[0].end.slice(0, 10));
+    }
+    function percentageOfTimeElapsed(startDate, endDate) {
+        const currentDate = new Date();
+        const totalDifferenceMilliseconds = endDate.getTime() - startDate.getTime();
+        const elapsedDifferenceMilliseconds = currentDate.getTime() - startDate.getTime();
 
-    //     const percentageElapsed = (elapsedDifferenceMilliseconds / totalDifferenceMilliseconds) * 100;
-    //     return percentageElapsed;
-    // }
+        const percentageElapsed = (elapsedDifferenceMilliseconds / totalDifferenceMilliseconds) * 100;
+        return percentageElapsed;
+    }
 
-    // if (startDate !== '' && endDate !== '') {
-    //     const percentageElapsed = percentageOfTimeElapsed(startDate, endDate);
-    //     percent = Math.round(percentageElapsed.toFixed(2));
-    // }
+    if (startDate !== '' && endDate !== '') {
+        const percentageElapsed = percentageOfTimeElapsed(startDate, endDate);
+        percent = Math.round(percentageElapsed.toFixed(2));
+    }
 
     return (
         <>
@@ -96,13 +116,13 @@ export default function Summary() {
                                 />
                                 <p className="summary-text">Semester's GPA</p>
                             </div>
-                            {/* <div className='semester_summary position-relative'>
+                            <div className='semester_summary position-relative'>
                                 <div className='position-absolute semester_summary_content summary_content'>
                                     <p className='text-center'>{percent + '%'}</p>
                                 </div>
                                 <CircularProgress thickness={1.5} size='10em' variant="determinate" className='progressSummary' value={percent} />
                                 <p className="summary-text">Semester Completion</p>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>

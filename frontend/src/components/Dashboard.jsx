@@ -50,7 +50,7 @@ export default function Dashboard() {
                                 </div>
                             </section>
                             <section className="dashboard-section position-relative">
-                                <Summary user={data} />
+                                <Summary />
                             </section>
                             <section className="dashboard-section position-relative semester-section">
                                 <div className="container">

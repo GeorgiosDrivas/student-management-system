@@ -3,26 +3,26 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 export default function SemesterSb() {
 
-    const [user, setUser] = useState([]);
+    const [courses, setCourses] = useState([]);
     const [error, setError] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [selectValue, setSelectValue] = useState("Summer Semester");
 
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchCourses = async () => {
             try {
-                const response = await fetch('http://localhost:3000/students');
+                const response = await fetch('http://localhost:3000/courses');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }
                 const data = await response.json();
-                setUser(data);
+                setCourses(data);
             } catch (error) {
                 setError('Failed to fetch students data');
             }
         };
 
-        fetchUsers();
+        fetchCourses();
     }, []);
 
     const onValueChange = (event) => {
@@ -55,9 +55,9 @@ export default function SemesterSb() {
                     <div className="row">
                         <div className="col-12">
                             <div className="semester-page-courses d-flex flex-column">
-                                {user && user.courses && user.courses.length > 0 && selectValue ? (
+                                {courses && courses.courses && selectValue ? (
                                     selectValue === 'Summer Semester' ? (
-                                        user.courses.filter(course => course.semester === 'Summer Semester').map(course => (
+                                        courses.courses.filter(course => course.semester === 'Summer Semester').map(course => (
                                             <div key={course._id} className="mb-5 d-flex flex-row justify-content-between align-items-start">
                                                 <div className="text-start">
                                                     <h2>{course.course_name}</h2>
@@ -73,7 +73,7 @@ export default function SemesterSb() {
                                                 </div>
                                             </div>
                                         ))) : selectValue === 'Spring Semester' ? (
-                                            user.courses.filter(course => course.semester === 'Spring Semester').map(course => (
+                                            courses.courses.filter(course => course.semester === 'Spring Semester').map(course => (
                                                 <div key={course._id} className="mb-5 d-flex flex-row justify-content-between align-items-start">
                                                     <div className="text-start">
                                                         <h2>{course.course_name}</h2>
@@ -89,7 +89,7 @@ export default function SemesterSb() {
                                                     </div>
                                                 </div>
                                             ))) : selectValue === 'Fall Semester' ? (
-                                                user.courses.filter(course => course.semester === 'Fall Semester').map(course => (
+                                                courses.courses.filter(course => course.semester === 'Fall Semester').map(course => (
                                                     <div key={course._id} className="mb-5 d-flex flex-row justify-content-between align-items-start">
                                                         <div className="text-start">
                                                             <h2>{course.course_name}</h2>

@@ -1,10 +1,31 @@
-export default function Events({ user }) {
+import { useState, useEffect } from 'react';
 
+export default function Events() {
+
+    const [data, setData] = useState([]);
     const dateOptions = {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',
     };
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/events');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students data');
+                }
+                const dt = await response.json();
+                setData(dt);
+            } catch (error) {
+                setError('Failed to fetch students data');
+            }
+        };
+
+        fetchEvents();
+    }, []);
+
 
     return (
         <>
@@ -18,9 +39,9 @@ export default function Events({ user }) {
                     <div className="row">
                         <div className="row">
                             {
-                                (user && user.events && user.events.length > 0) ?
+                                (data && data.events) ?
                                     (
-                                        user.events.map(event => (
+                                        data.events.map(event => (
 
                                             <div className="col-12 col-lg-4" key={event._id}>
                                                 <div className="text-start p-3 event_wrap mb-5 pb-0">
