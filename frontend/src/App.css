@@ -250,9 +250,17 @@ button:focus:not(:focus-visible) {
   padding: 20px;
   background-color: #fff;
   width: 40%;
+  z-index: 9999;
 }
 
 .single-article-close-icon {
   background: transparent;
   border: none;
+}
+
+.exercise-color {
+  width: 7px;
+  height: 100%;
+  left: 0;
+  top: 0;
 }

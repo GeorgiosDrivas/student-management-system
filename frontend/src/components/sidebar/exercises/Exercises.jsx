@@ -79,7 +79,7 @@ export default function Exercises() {
                             {
                                 exercises && exercises.exercises && (
                                     exercises.exercises.map(exercise => (
-                                        <ExercisesArticles data={data} status={exercise.status} exercise={exercise} title={exercise.exercise_name} id={exercise._id} content={exercise.exercise_content} subject={exercise.exercise_subject} />
+                                        <ExercisesArticles data={data} exercise={exercise} key={exercise._id} />
                                     ))
                                 )
                             }
@@ -88,7 +88,7 @@ export default function Exercises() {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <h2>Exercises</h2>
+                        <h2>Add Exercise</h2>
                     </div>
                     <div className="col-12">
                         <form className="newCourseForm">
