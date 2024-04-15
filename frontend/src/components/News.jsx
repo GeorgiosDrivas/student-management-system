@@ -45,6 +45,11 @@ export default function News() {
                                 ))
                             ) : null
                         }
+                        <div className="col-12">
+                            <div className='text-center'>
+                                <a href="/news" title='View all news' className='button'>View all news</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

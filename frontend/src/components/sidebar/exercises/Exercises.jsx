@@ -74,7 +74,7 @@ export default function Exercises() {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h2>Submitted Exercises</h2>
+                        <h2 className='mb-5'>Submitted Exercises</h2>
                         <div>
                             {
                                 exercises && exercises.exercises && (
@@ -88,11 +88,11 @@ export default function Exercises() {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <h2>Add Exercise</h2>
+                        <h2 className='mb-5'>Add Exercise</h2>
                     </div>
                     <div className="col-12">
                         <form className="newCourseForm">
-                            <select className="select-element my-5" onChange={(e) => setExercise_subject(e.target.value)}>
+                            <select className="select-element mb-5 me-5" onChange={(e) => setExercise_subject(e.target.value)}>
                                 {
                                     data.courses && data.courses.length > 0 ? (
                                         data.courses.filter(course => course.semester === "Summer Semester")
@@ -108,7 +108,7 @@ export default function Exercises() {
                             </select>
                             <input type="text" placeholder="Exercise title" value={exercise_name} onChange={(e) => setExercise_name(e.target.value)} />
                             <input type="textarea" placeholder="Exercise content" value={exercise_content} onChange={(e) => setExercise_content(e.target.value)} />
-                            <button onClick={handleSubmit}>Submit</button>
+                            <button className='button' onClick={handleSubmit}>Submit</button>
                         </form>
                     </div>
                 </div>

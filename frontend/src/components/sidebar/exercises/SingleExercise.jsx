@@ -42,14 +42,14 @@ export default function SingleExercise({ data, exercise, setShowArticle }) {
             <p>{exercise.exercise_content}</p>
             {
                 exercise.status === "Draft" ? (
-                    <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
+                    <button className='button mb-5' onClick={() => setShowEdit(!showEdit)}>Edit</button>
                 ) : null}
             {
                 showEdit ? (
-                    <form>
+                    <form className='d-flex flex-column newCourseForm'>
                         <input type="text" placeholder='Title' value={exercise_name} onChange={(e) => setExerciseName(e.target.value)} />
                         <textarea placeholder='Content' value={exercise_content} onChange={(e) => setExerciseContent(e.target.value)} />
-                        <select className="select-element my-5" value={exercise.exercise_subject} onChange={(e) => setExerciseSubject(e.target.value)}>
+                        <select className="select-element mb-3" value={exercise.exercise_subject} onChange={(e) => setExerciseSubject(e.target.value)}>
                             {
                                 data.courses && data.courses.length > 0 ? (
                                     data.courses.filter(course => course.semester === "Summer Semester")
@@ -59,11 +59,13 @@ export default function SingleExercise({ data, exercise, setShowArticle }) {
                                 )
                             }
                         </select>
-                        <select value={exercise.status} onChange={(e) => setStatus(e.target.value)}>
+                        <select className="select-element" value={exercise.status} onChange={(e) => setStatus(e.target.value)}>
                             <option value="Published">Published</option>
                             <option value="Draft">Draft</option>
                         </select>
-                        <button type="button" onClick={handleUpdate}>Submit</button>
+                        <div className='my-4'>
+                            <button className="button" onClick={handleUpdate}>Submit</button>
+                        </div>
                     </form>
                 ) : null
             }
