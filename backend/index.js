@@ -13,10 +13,42 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Get Exercise by ID Endpoint
+app.get('/exercises/:id', async (request, response) => {
+    try {
+        const exerciseId = request.params.id;
+        const exercise = await Exercise.findById(exerciseId);
+        if (!exercise) {
+            return response.status(404).json({ message: 'Exercise not found' });
+        }
+        return response.status(200).json(exercise);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).send({ message: 'Internal server error' });
+    }
+});
+
+//Update exercises
+app.put('/exercises/:id', async (request, response) => {
+    try {
+        const { exercise_name, exercise_subject, exercise_content, status } = request.body;
+        const updatedExercise = await Exercise.findByIdAndUpdate(
+            request.params.id,
+            { exercise_name, exercise_subject, exercise_content, status },
+            { new: true }
+        );
+        return response.status(200).json(updatedExercise);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
+//Post exercises
 app.post('/exercises', async (request, response) => {
     try {
-        const { exercise_name, exercise_subject, exercise_content } = request.body;
-        const newExercise = new Exercise({ exercise_name, exercise_subject, exercise_content });
+        const { exercise_name, exercise_subject, exercise_content, status } = request.body;
+        const newExercise = new Exercise({ exercise_name, exercise_subject, exercise_content, status });
         const savedExercise = await newExercise.save();
         return response.status(201).json(savedExercise);
     } catch (error) {

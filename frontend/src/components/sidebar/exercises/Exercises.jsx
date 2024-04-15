@@ -4,7 +4,7 @@ import ExercisesArticles from './ExercisesArticles';
 export default function Exercises() {
 
     const [exercise_subject, setExercise_subject] = useState("Introduction to Biology");
-    const [selectStatusValue, setselectStatusValue] = useState("Publish");
+    const [status, setStatus] = useState("Published");
     const [loading, setLoading] = useState(false);
     const [exercise_name, setExercise_name] = useState("");
     const [exercise_content, setExercise_content] = useState("");
@@ -56,7 +56,7 @@ export default function Exercises() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ exercise_name, exercise_subject, exercise_content }),
+                body: JSON.stringify({ exercise_name, exercise_subject, exercise_content, status }),
             });
             setExercise_name('');
             setExercise_content('');
@@ -79,7 +79,7 @@ export default function Exercises() {
                             {
                                 exercises && exercises.exercises && (
                                     exercises.exercises.map(exercise => (
-                                        <ExercisesArticles exercise={exercise} title={exercise.exercise_name} id={exercise._id} content={exercise.exercise_content} subject={exercise.exercise_subject} />
+                                        <ExercisesArticles data={data} status={exercise.status} exercise={exercise} title={exercise.exercise_name} id={exercise._id} content={exercise.exercise_content} subject={exercise.exercise_subject} />
                                     ))
                                 )
                             }
@@ -102,9 +102,9 @@ export default function Exercises() {
                                     )
                                 }
                             </select>
-                            <select className="select-element" onChange={(e) => setselectStatusValue(e.target.value)}>
-                                <option value="Draft">Draft</option>
+                            <select className="select-element" value={status} onChange={(e) => setStatus(e.target.value)}>
                                 <option value="Publish">Publish</option>
+                                <option value="Draft">Draft</option>
                             </select>
                             <input type="text" placeholder="Exercise title" value={exercise_name} onChange={(e) => setExercise_name(e.target.value)} />
                             <input type="textarea" placeholder="Exercise content" value={exercise_content} onChange={(e) => setExercise_content(e.target.value)} />

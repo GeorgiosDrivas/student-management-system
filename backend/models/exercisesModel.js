@@ -11,6 +11,9 @@ const exercisesSchema = mongoose.Schema(
         exercise_content: {
             type: String,
         },
+        status: {
+            type: String,
+        },
     }
 );
 
