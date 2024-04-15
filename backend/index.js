@@ -1,4 +1,3 @@
-import { PORT, mongoDBURL } from "./config.js";
 import express from "express";
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -8,6 +7,9 @@ import { Course } from "./models/coursesModel.js";
 import { Events } from "./models/eventsModel.js";
 import { Exercise } from "./models/exercisesModel.js";
 import { News } from './models/newsModel.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -139,11 +141,11 @@ app.get('/students', async (request, response) => {
 });
 
 mongoose
-    .connect(mongoDBURL)
+    .connect(process.env.DB_STRING)
     .then(() => {
         console.log("App connected to database");
-        app.listen(PORT, () => {
-            console.log(`App is listening to port: ${PORT}`);
+        app.listen(3000, () => {
+            console.log(`App is listening on port: 3000`);
         });
     })
     .catch((error) => {
