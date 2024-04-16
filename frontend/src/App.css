@@ -278,3 +278,8 @@ button:focus:not(:focus-visible) {
   border: 1px solid;
   padding: 10px;
 }
+
+.logout-btn {
+  border: none;
+  background-color: transparent;
+}

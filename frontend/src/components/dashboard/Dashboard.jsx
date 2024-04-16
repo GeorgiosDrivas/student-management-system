@@ -3,6 +3,7 @@ import Semester from "./SemesterDashboard";
 import News from './NewsDashboard';
 import Events from './EventsDashboard';
 import { useState, useEffect } from 'react';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Dashboard() {
     // Declare date variables for greeting message
@@ -67,6 +68,11 @@ export default function Dashboard() {
                                     <div>
                                         <p className="m-0 profile-text text-center">{data.students[0].name} {data.students[0].surname}</p>
                                         <p className="m-0 profile-year">{data.students[0].year}</p>
+                                    </div>
+                                    <div className="ms-4">
+                                        <button className="logout-btn">
+                                            <LogoutIcon />
+                                        </button>
                                     </div>
                                 </div>
                             ) : null}
