@@ -1,6 +1,6 @@
 import Summary from "./dashboard/Summary";
 import Semester from "./dashboard/Semester";
-import News from './News';
+import News from './single-pages/News';
 import Events from './dashboard/Events';
 import { useState, useEffect } from 'react';
 

@@ -11,7 +11,7 @@ export default function Sidebar() {
     return (
         <>
             <ul id="sidebar-ul" className="right-sidebar position-fixed">
-                <li><Link to="/"><DashboardIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />Dashboard</Link></li>
+                <li><Link to="/dashboard"><DashboardIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />Dashboard</Link></li>
                 <li><Link to="/semester"><AutoStoriesIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />Semester</Link></li>
                 <li><Link to="/events"><EventIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />Events</Link></li>
                 <li><Link to="/news"><NewspaperIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />News</Link></li>

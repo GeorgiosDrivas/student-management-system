@@ -6,6 +6,8 @@ export default function Login() {
     const [data, setData] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [failedLogin, setFailedLogin] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,8 +29,10 @@ export default function Login() {
     function handleClick(event) {
         event.preventDefault();
         if (data.students) {
-            if (email === data.students[0].email) {
+            if (email === data.students[0].email && password === data.students[0].password) {
                 navigate('/dashboard');
+            } else {
+                setFailedLogin("Wrong credentials. Please try again.");
             }
         }
     }
@@ -37,12 +41,24 @@ export default function Login() {
         <div className="container">
             <div className="row">
                 <div className="col-12">
-                    <div className='d-flex justify-content-center align-items-center vh-100'>
-                        <form className='d-flex flex-column'>
-                            <input className='mb-3' type="text" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <input className='mb-3' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <button onClick={(e) => handleClick(e)}>Log in</button>
-                        </form>
+                    <div className='d-flex flex-column justify-content-center align-items-center vh-100'>
+                        <h1>Student Management System</h1>
+                        <div className='login-wrap position-relative'>
+                            <form className='d-flex flex-column'>
+                                <input className='mb-3' type="text" placeholder='Email *' value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input className='mb-3' type="password" placeholder='Password *' value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <div className='text-center'>
+                                    <button className='button' onClick={(e) => handleClick(e)}>Log in</button>
+                                </div>
+                            </form>
+                            {
+                                failedLogin && (
+                                    <div className='mt-2 text-center position-absolute w-100'>
+                                        <p className='' style={{ color: 'red' }}>{failedLogin}</p>
+                                    </div>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

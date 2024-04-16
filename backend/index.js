@@ -8,12 +8,26 @@ import { Events } from "./models/eventsModel.js";
 import { Exercise } from "./models/exercisesModel.js";
 import { News } from './models/newsModel.js';
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { readFileSync } from 'fs';
+
+// Get the directory name of the current module
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Read the HTML file
+const htmlContent = readFileSync(`${__dirname}/index.html`, 'utf8');
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+//Landing page
+app.get('/', (req, res) => {
+    res.send(htmlContent);
+});
 
 // Get Exercise by ID Endpoint
 app.get('/exercises/:id', async (request, response) => {
@@ -57,10 +71,6 @@ app.post('/exercises', async (request, response) => {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
-});
-
-app.get('/', (request, response) => {
-    response.send("Welcome to Student Management System");
 });
 
 //News Endpoint
