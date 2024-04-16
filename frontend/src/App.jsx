@@ -1,11 +1,11 @@
 import './App.css'
-import Dashboard from './components/Dashboard';
-import Sidebar from './components/Sidebar';
-import News from './components/single-pages/news/News-sb';
-import SemesterSb from './components/single-pages/Semester-sb';
+import Dashboard from './components/dashboard/Dashboard';
+import Sidebar from './components/single-pages/Sidebar';
+import News from './components/single-pages/news/NewsPage';
+import SemesterSb from './components/single-pages/SemesterPage';
 import Exercises from './components/single-pages/exercises/Exercises';
-import Events from './components/single-pages/Events-sb';
-import Settings from './components/single-pages/Settings-sb';
+import Events from './components/single-pages/EventsPage';
+import Settings from './components/single-pages/SettingsPage';
 import Login from './Login';
 import { Route, Routes, useLocation } from 'react-router-dom';
 

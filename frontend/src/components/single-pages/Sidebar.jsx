@@ -17,7 +17,6 @@ export default function Sidebar() {
                 <li><Link to="/news"><NewspaperIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />News</Link></li>
                 <li><Link to="/exercises"><HomeWorkIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />Exercises</Link></li>
                 <li><Link to="/settings"><SettingsIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />Settings</Link></li>
-                <li><Link to="/logout"><LogoutIcon style={{ fill: '#f9fafc', width: "35px", height: "35px", marginRight: "25px" }} />Logout</Link></li>
             </ul>
         </>
     );
