@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login({ setIsLoggedIn }) {
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
     const [email, setEmail] = useState("");
+    const [data, setData] = useState([]);
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
     const [failedLogin, setFailedLogin] = useState("");
 
     useEffect(() => {
@@ -29,7 +28,11 @@ export default function Login() {
     function handleClick(event) {
         event.preventDefault();
         if (data.students) {
+            // Perform authentication logic here (e.g., check credentials)
             if (email === data.students[0].email && password === data.students[0].password) {
+                // Set authentication token in localStorage
+                localStorage.setItem('token', 'your-authentication-token');
+                setIsLoggedIn(true); // Set isLoggedIn state to true upon successful login
                 navigate('/dashboard');
             } else {
                 setFailedLogin("Wrong credentials. Please try again.");
