@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login({ setIsLoggedIn }) {
@@ -8,25 +8,22 @@ export default function Login({ setIsLoggedIn }) {
     const [password, setPassword] = useState("");
     const [failedLogin, setFailedLogin] = useState("");
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/students');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch students data');
-                }
-                const dt = await response.json();
-                setData(dt);
-            } catch (error) {
-                setError('Failed to fetch students data');
+    async function fetchData() {
+        try {
+            const response = await fetch('http://localhost:3000/students');
+            if (!response.ok) {
+                throw new Error('Failed to fetch students data');
             }
-        };
-
-        fetchData();
-    }, []);
+            const dt = await response.json();
+            setData(dt);
+        } catch (error) {
+            console.error('Failed to fetch students data:', error);
+        }
+    }
 
     function handleClick(event) {
         event.preventDefault();
+        fetchData();
         if (data.students) {
             // Perform authentication logic here (e.g., check credentials)
             if (email === data.students[0].email && password === data.students[0].password) {

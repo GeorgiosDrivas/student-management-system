@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import './App.css';
-import React, { useState, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import Sidebar from './components/single-pages/Sidebar';
@@ -13,14 +13,6 @@ import Login from './Login';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    // Check for authentication token in localStorage
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
   return (
     <div className="row">
       {isLoggedIn && (
@@ -30,13 +22,14 @@ function App() {
       )}
       <div className='col-12 col-lg-11 p-0'>
         <Routes>
-          <Route path="/" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />} />
-          <Route path="/semester" element={isLoggedIn ? <SemesterSb /> : <Navigate to="/" />} />
-          <Route path="/events" element={isLoggedIn ? <Events /> : <Navigate to="/" />} />
-          <Route path="/news" element={isLoggedIn ? <News /> : <Navigate to="/" />} />
-          <Route path="/exercises" element={isLoggedIn ? <Exercises /> : <Navigate to="/" />} />
-          <Route path="/settings" element={isLoggedIn ? <Settings /> : <Navigate to="/" />} />
+          <Route path="/" element={!isLoggedIn ? <Navigate to="/login" /> : <Navigate to="/dashboard" />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
+          <Route path="/semester" element={isLoggedIn ? <SemesterSb /> : <Navigate to="/login" />} />
+          <Route path="/events" element={isLoggedIn ? <Events /> : <Navigate to="/login" />} />
+          <Route path="/news" element={isLoggedIn ? <News /> : <Navigate to="/login" />} />
+          <Route path="/exercises" element={isLoggedIn ? <Exercises /> : <Navigate to="/login" />} />
+          <Route path="/settings" element={isLoggedIn ? <Settings /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </div>
