@@ -65,6 +65,13 @@ export default function Login({ setIsLoggedIn }) {
                     </div>
                 </div>
             </div>
+            <div className="row">
+                <div className="col-12">
+                    <p>Test credentials:</p>
+                    <p className='m-0'>Email: jessica@gmail.com</p>
+                    <p className='m-0'>Password: 123jessica</p>
+                </div>
+            </div>
         </div>
     );
 }
