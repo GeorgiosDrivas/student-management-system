@@ -16,6 +16,35 @@ This repository contains the source code for a comprehensive Student Management 
   <li>Database: MongoDB</li>
 </ul>
 
+<h2>How to run the app</h2>
+<ul>
+  <li>clone the reposiory:</li> 
+git clone https://github.com/GeorgiosDrivas/student-management-system.git
+
+<li>navigate to the folder</li>
+cd student-management-system
+
+<li>navigate to the client folder and download dependencies</li>
+  <ul>
+    <li>cd client</li>
+    <li>npm i</li>
+  </ul>
+
+<li>Do the same for the server</li>
+  <ul>
+    <li>cd ..</li>
+    <li>cd server</li>
+    <li>npm i</li>
+  </ul>
+<li>Run the server (in the server folder)</li>
+npm run dev
+
+<li>Run the client (in the client folder. In different command palettes)</li>
+npm run dev
+
+<li>Then, click on the link the client provides</li>
+</ul>
+
 <h2>Contributing</h2>
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests to help improve this project.
 <p>This project is under development.</p>
