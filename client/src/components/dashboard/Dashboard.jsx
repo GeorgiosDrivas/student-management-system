@@ -4,8 +4,9 @@ import News from './NewsDashboard';
 import Events from './EventsDashboard';
 import { useState, useEffect } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
 
-export default function Dashboard() {
+export default function Dashboard({ setIsLoggedIn }) {
     // Declare date variables for greeting message
     let date = new Date().getHours();
     const morning = 12;
@@ -27,6 +28,14 @@ export default function Dashboard() {
 
         fetchUsers();
     }, []);
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        window.location.reload();
+        setIsLoggedIn = false;
+        navigate('/login');
+    };
 
     return (
         <>
@@ -70,7 +79,7 @@ export default function Dashboard() {
                                         <p className="m-0 profile-year">{data.students[0].year}</p>
                                     </div>
                                     <div className="ms-4">
-                                        <button className="logout-btn">
+                                        <button onClick={handleLogout} className="logout-btn">
                                             <LogoutIcon />
                                         </button>
                                     </div>

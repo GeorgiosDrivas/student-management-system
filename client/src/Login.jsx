@@ -21,17 +21,20 @@ export default function Login({ setIsLoggedIn }) {
         }
     }
 
-    function handleClick(event) {
+    async function handleClick(event) {
         event.preventDefault();
-        fetchData();
+        await fetchData();
         if (data.students) {
             // Perform authentication logic here (e.g., check credentials)
-            if (email === data.students[0].email && password === data.students[0].password) {
-                // Set authentication token in localStorage
-                localStorage.setItem('token', 'your-authentication-token');
+            const user = data.students.find(student => student.email === email && student.password === password);
+            if (user) {
+                // Set authentication token in localStorage (optional)
+                localStorage.setItem('isLoggedIn', true);
                 setIsLoggedIn(true); // Set isLoggedIn state to true upon successful login
                 navigate('/dashboard');
             } else {
+                setEmail("");
+                setPassword("");
                 setFailedLogin("Wrong credentials. Please try again.");
             }
         }
