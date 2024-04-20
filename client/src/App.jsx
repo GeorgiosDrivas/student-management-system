@@ -37,15 +37,15 @@ function App() {
             <Route path="dashboard" element={isLoggedIn ? <Dashboard setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/login" />} />
             <Route path="semester" element={isLoggedIn ? <SemesterSb /> : <Navigate to="/login" />} />
             <Route path="events" element={isLoggedIn ? <Events /> : <Navigate to="/login" />} />
-            <Route path="news" element={isLoggedIn ? <News /> : <Navigate to="/login" />} />
+            <Route path="news" element={isLoggedIn ? <News /> : <Navigate to="/login" />}>
+              <Route path="news/:id" element={isLoggedIn ? <News /> : <Navigate to="/login" />} />
+            </Route>
             <Route path="exercises" element={isLoggedIn ? <Exercises /> : <Navigate to="/login" />} />
             <Route path="settings" element={isLoggedIn ? <Settings setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/login" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>
-      <Routes>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
     </>
   );
 }

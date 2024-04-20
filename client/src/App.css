@@ -245,7 +245,7 @@ button:focus:not(:focus-visible) {
 }
 
 /* Articles */
-.single-article-details {
+/* .single-article-details {
   position: absolute;
   bottom: calc(100% - 78%);
   left: calc(100% - 79%);
@@ -259,7 +259,7 @@ button:focus:not(:focus-visible) {
 .single-article-close-icon {
   background: transparent;
   border: none;
-}
+} */
 
 .exercise-color {
   width: 7px;
