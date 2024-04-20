@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import SingleArticle from './components/single-pages/news/SingleArticle';
 import Dashboard from './components/dashboard/Dashboard';
 import Sidebar from './components/single-pages/Sidebar';
 import News from './components/single-pages/news/NewsPage';
@@ -37,9 +38,8 @@ function App() {
             <Route path="dashboard" element={isLoggedIn ? <Dashboard setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/login" />} />
             <Route path="semester" element={isLoggedIn ? <SemesterSb /> : <Navigate to="/login" />} />
             <Route path="events" element={isLoggedIn ? <Events /> : <Navigate to="/login" />} />
-            <Route path="news" element={isLoggedIn ? <News /> : <Navigate to="/login" />}>
-              <Route path="news/:id" element={isLoggedIn ? <News /> : <Navigate to="/login" />} />
-            </Route>
+            <Route path="news" element={isLoggedIn ? <News /> : <Navigate to="/login" />} />
+            <Route path="news/:id" element={isLoggedIn ? <SingleArticle /> : <Navigate to="/login" />} />
             <Route path="exercises" element={isLoggedIn ? <Exercises /> : <Navigate to="/login" />} />
             <Route path="settings" element={isLoggedIn ? <Settings setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/login" />} />
             <Route path="*" element={<NotFound />} />

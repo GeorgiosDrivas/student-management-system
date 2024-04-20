@@ -29,6 +29,22 @@ app.get('/', (req, res) => {
     res.send(htmlContent);
 });
 
+// Get News article by ID Endpoint
+app.get('/news/:id', async (request, response) => {
+    try {
+        const newsId = request.params.id;
+        const newsArticle = await News.findById(newsId);
+        if (!newsArticle) {
+            return response.status(404).json({ message: 'Article not found' });
+        }
+        return response.status(200).json(newsArticle);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).send({ message: 'Internal server error' });
+    }
+});
+
+
 // Get Exercise by ID Endpoint
 app.get('/exercises/:id', async (request, response) => {
     try {

@@ -1,14 +1,33 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-export default function singleArticle({ article, setShowArticle }) {
+export default function SingleArticle() {
     const { id } = useParams();
+    const [article, setArticle] = useState([]);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const postId = id; // Replace 'your_post_id_here' with the actual ID
+                const response = await fetch(`http://localhost:3000/news/${postId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch post data');
+                }
+                const data = await response.json();
+                setArticle(data);
+            } catch (error) {
+                setError('Failed to fetch post data');
+            }
+        };
+
+        fetchNews();
+    }, []);
+
 
     return (
-        <div className="single-article-details">
-            <div className="mb-4">
-                <button className='single-article-close-icon' onClick={() => setShowArticle(false)}><CloseIcon /></button>
-            </div>
+        <div className="single-article-details mt-5 px-5">
             <h2 className='text-center mb-5'>{article.news_title}</h2>
             <p>{article.news_desc}</p>
         </div>
