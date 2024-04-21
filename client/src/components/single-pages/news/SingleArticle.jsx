@@ -1,8 +1,9 @@
-import CloseIcon from '@mui/icons-material/Close';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SingleArticle() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [article, setArticle] = useState([]);
     const [error, setError] = useState("");
@@ -27,9 +28,14 @@ export default function SingleArticle() {
 
 
     return (
-        <div className="single-article-details mt-5 px-5">
-            <h2 className='text-center mb-5'>{article.news_title}</h2>
-            <p>{article.news_desc}</p>
-        </div>
+        <>
+            <div className="single-article-details mt-5 px-5">
+                <h2 className='text-center mb-5'>{article.news_title}</h2>
+                <p>{article.news_desc}</p>
+                <div>
+                    <button className='button mt-5' onClick={() => navigate(-1)}>&larr; Back to News</button>
+                </div>
+            </div>
+        </>
     )
 }
