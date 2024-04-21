@@ -38,7 +38,7 @@ export default function News() {
                             {
                                 (data && data.news) ? (
                                     data.news.map(article => (
-                                        <NewsArticles article={article} id={article._id} title={article.news_title} desc={article.news_desc} />
+                                        <NewsArticles id={article._id} title={article.news_title} desc={article.news_desc} />
                                     ))
                                 ) : null
                             }
