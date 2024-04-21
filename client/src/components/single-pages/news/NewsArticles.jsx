@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import SingleArticle from './SingleArticle';
 import { Link } from 'react-router-dom';
 
 export default function NewsArticles({ article, id, title, desc }) {
