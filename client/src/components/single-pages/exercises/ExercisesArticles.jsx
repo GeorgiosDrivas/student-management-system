@@ -7,6 +7,7 @@ export default function ExercisesArticles({ data, exercise }) {
 
     function handleClick() {
         setShowArticle(!showArticle);
+        window.scrollTo(0, 0);
     }
 
     return (
