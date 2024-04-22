@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { NewsContext } from './NewsPage';
+import { useContext } from 'react';
 
-export default function NewsArticles({ id, title, desc }) {
+export default function NewsArticles() {
+    const { id, title, desc } = useContext(NewsContext);
 
     return (
         <Link to={`${id}`}>

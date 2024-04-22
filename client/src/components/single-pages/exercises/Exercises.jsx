@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import ExercisesArticles from './ExercisesArticles';
+export const ExerciseContext = createContext();
 
 export default function Exercises() {
 
@@ -28,7 +29,6 @@ export default function Exercises() {
 
         fetchCourses();
     }, []);
-
 
     useEffect(() => {
         const fetchExercises = async () => {
@@ -70,6 +70,7 @@ export default function Exercises() {
     };
 
     return (
+
         <main className="section-title">
             <div className="container">
                 <div className="row">
@@ -79,7 +80,9 @@ export default function Exercises() {
                             {
                                 exercises && exercises.exercises && (
                                     exercises.exercises.map(exercise => (
-                                        <ExercisesArticles data={data} exercise={exercise} key={exercise._id} />
+                                        <ExerciseContext.Provider key={exercise._id} value={{ exercise: exercise, data: data }}>
+                                            <ExercisesArticles />
+                                        </ExerciseContext.Provider>
                                     ))
                                 )
                             }
@@ -114,5 +117,6 @@ export default function Exercises() {
                 </div>
             </div>
         </main>
+
     )
 }

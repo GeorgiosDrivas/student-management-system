@@ -1,7 +1,10 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ExerciseContext } from './Exercises';
 
-export default function SingleExercise({ data, exercise, setShowArticle }) {
+export default function SingleExercise({ exercise }) {
+
+    const { data } = useContext(ExerciseContext);
 
     const [showEdit, setShowEdit] = useState(false);
     const [exercise_name, setExerciseName] = useState(exercise.exercise_name);
@@ -49,7 +52,7 @@ export default function SingleExercise({ data, exercise, setShowArticle }) {
                     <form className='d-flex flex-column newCourseForm'>
                         <input type="text" placeholder='Title' value={exercise_name} onChange={(e) => setExerciseName(e.target.value)} />
                         <textarea placeholder='Content' value={exercise_content} onChange={(e) => setExerciseContent(e.target.value)} />
-                        <select className="select-element mb-3" value={exercise.exercise_subject} onChange={(e) => setExerciseSubject(e.target.value)}>
+                        <select className="select-element mb-3" value={exercise_subject} onChange={(e) => setExerciseSubject(e.target.value)}>
                             {
                                 data.courses && data.courses.length > 0 ? (
                                     data.courses.filter(course => course.semester === "Summer Semester")
@@ -59,7 +62,7 @@ export default function SingleExercise({ data, exercise, setShowArticle }) {
                                 )
                             }
                         </select>
-                        <select className="select-element" value={exercise.status} onChange={(e) => setStatus(e.target.value)}>
+                        <select className="select-element" value={status} onChange={(e) => setStatus(e.target.value)}>
                             <option value="Published">Published</option>
                             <option value="Draft">Draft</option>
                         </select>

@@ -1,6 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { LoginContext } from '../../App';
 
-export default function Settings({ setIsLoggedIn }) {
+export default function Settings() {
+
+    const { setIsLoggedIn } = useContext(LoginContext);
 
     const navigate = useNavigate();
 

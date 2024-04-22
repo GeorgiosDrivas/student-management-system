@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function SemesterSb() {
+export default function SemesterPage() {
 
     const [courses, setCourses] = useState([]);
     const [error, setError] = useState('');

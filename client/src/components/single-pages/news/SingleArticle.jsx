@@ -9,7 +9,7 @@ export default function SingleArticle() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        const fetchNews = async () => {
+        const fetchArticle = async () => {
             try {
                 const postId = id; // Replace 'your_post_id_here' with the actual ID
                 const response = await fetch(`http://localhost:3000/news/${postId}`);
@@ -23,13 +23,13 @@ export default function SingleArticle() {
             }
         };
 
-        fetchNews();
+        fetchArticle();
     }, []);
 
 
     return (
         <>
-            <div className="single-article-details mt-5 px-5">
+            <div className="mt-5 px-5">
                 <h2 className='text-center mb-5'>{article.news_title}</h2>
                 <p>{article.news_desc}</p>
                 <div>

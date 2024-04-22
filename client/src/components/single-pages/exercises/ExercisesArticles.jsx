@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import SingleExercise from './SingleExercise';
+import { ExerciseContext } from './Exercises';
 
-export default function ExercisesArticles({ data, exercise }) {
+export default function ExercisesArticles() {
+
+    const { exercise } = useContext(ExerciseContext);
 
     const [showArticle, setShowArticle] = useState(false);
 
@@ -21,7 +24,7 @@ export default function ExercisesArticles({ data, exercise }) {
             </div>
             {
                 showArticle && (
-                    <SingleExercise data={data} exercise={exercise} setShowArticle={setShowArticle} />
+                    <SingleExercise exercise={exercise} setShowArticle={setShowArticle} />
                 )
             }
         </div>

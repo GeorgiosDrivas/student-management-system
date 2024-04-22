@@ -2,11 +2,15 @@ import Summary from "./SummaryDashboard";
 import Semester from "./SemesterDashboard";
 import News from './NewsDashboard';
 import Events from './EventsDashboard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
+import { LoginContext } from "../../App";
 
-export default function Dashboard({ setIsLoggedIn }) {
+export default function Dashboard() {
+
+    const { setIsLoggedIn } = useContext(LoginContext);
+
     // Declare date variables for greeting message
     let date = new Date().getHours();
     const morning = 12;

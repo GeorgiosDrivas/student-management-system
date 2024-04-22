@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LoginContext } from '../App';
 
-export default function Login({ setIsLoggedIn }) {
+export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [data, setData] = useState([]);
     const [password, setPassword] = useState("");
     const [failedLogin, setFailedLogin] = useState("");
+    const { setIsLoggedIn } = useContext(LoginContext);
 
     async function fetchData() {
         try {

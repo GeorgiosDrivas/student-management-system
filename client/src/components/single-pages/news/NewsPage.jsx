@@ -1,5 +1,7 @@
 import NewsArticles from './NewsArticles';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
+
+export const NewsContext = createContext();
 
 export default function News() {
 
@@ -24,6 +26,7 @@ export default function News() {
 
     return (
         <>
+
             <main className="section-title">
                 <section className="dashboard-section">
                     <div className='container'>
@@ -38,7 +41,13 @@ export default function News() {
                             {
                                 (data && data.news) ? (
                                     data.news.map(article => (
-                                        <NewsArticles id={article._id} title={article.news_title} desc={article.news_desc} />
+                                        <NewsContext.Provider value={{
+                                            id: article._id,
+                                            title: article.news_title,
+                                            desc: article.news_desc,
+                                        }}>
+                                            <NewsArticles />
+                                        </NewsContext.Provider>
                                     ))
                                 ) : null
                             }
@@ -46,6 +55,7 @@ export default function News() {
                     </div>
                 </section>
             </main>
+
         </>
     )
 }
