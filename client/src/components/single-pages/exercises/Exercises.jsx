@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
 import ExercisesArticles from './ExercisesArticles';
+
 export const ExerciseContext = createContext();
 
 export default function Exercises() {

@@ -37,7 +37,7 @@ export default function Dashboard() {
     const handleLogout = () => {
         localStorage.removeItem('isLoggedIn');
         window.location.reload();
-        setIsLoggedIn = false;
+        setIsLoggedIn(false);
         navigate('/login');
     };
 

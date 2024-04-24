@@ -27,12 +27,9 @@ export default function Login() {
         event.preventDefault();
         await fetchData();
         if (data.students) {
-            // Perform authentication logic here (e.g., check credentials)
             const user = data.students.find(student => student.email === email && student.password === password);
             if (user) {
-                // Set authentication token in localStorage (optional)
-                localStorage.setItem('isLoggedIn', true);
-                setIsLoggedIn(true); // Set isLoggedIn state to true upon successful login
+                setIsLoggedIn(true); // Update login state using context
                 navigate('/dashboard');
             } else {
                 setEmail("");

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Events() {
 
@@ -70,7 +71,7 @@ export default function Events() {
                     }
                 </div>
                 <div className="w-100 d-flex justify-content-center">
-                    <a className="button" href="/events" title="View all events">View all events</a>
+                    <Link className="button" to='/events' title="View all events">View all events</Link>
                 </div>
             </div >
         </>

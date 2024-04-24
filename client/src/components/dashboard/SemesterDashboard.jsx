@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Semester() {
 
@@ -51,7 +52,7 @@ export default function Semester() {
             <div className="row">
                 <div className="col-12">
                     <div className="sem-btn d-flex justify-content-center">
-                        <a href="/semester" className="button" title="View all semesters">View all semesters</a>
+                        <Link className="button" to='/semester' title="View all semesters">View all semesters</Link>
                     </div>
                 </div>
             </div>

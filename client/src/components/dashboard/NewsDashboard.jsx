@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function News() {
     const [data, setData] = useState([]);
@@ -47,7 +48,7 @@ export default function News() {
                         }
                         <div className="col-12">
                             <div className='text-center'>
-                                <a href="/news" title='View all news' className='button'>View all news</a>
+                                <Link to='/news' title='View all news' className='button'>View all news</Link>
                             </div>
                         </div>
                     </div>
