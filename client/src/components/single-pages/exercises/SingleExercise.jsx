@@ -10,7 +10,7 @@ export default function SingleExercise({ exercise }) {
     const [exercise_name, setExerciseName] = useState(exercise.exercise_name);
     const [exercise_content, setExerciseContent] = useState(exercise.exercise_content);
     const [exercise_subject, setExerciseSubject] = useState(exercise.exercise_subject);
-    const [status, setStatus] = useState("Published");
+    const [status, setStatus] = useState(exercise.status);
 
     const handleUpdate = async () => {
         try {

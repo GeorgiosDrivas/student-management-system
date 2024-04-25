@@ -1,19 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { LoginContext } from '../../App';
 
 export default function Settings() {
 
-    const { setIsLoggedIn } = useContext(LoginContext);
-
     const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.removeItem('isLoggedIn');
-        window.location.reload();
-        setIsLoggedIn(false);
-        navigate('/login');
-    };
 
     return (
         <>
@@ -23,7 +12,7 @@ export default function Settings() {
                     <div>
                         <h2 className='mb-3'>Logout</h2>
                         <p>Click this button to log-out. Every change will be saved in the database.<br />After logging out, you will be redirected in the login page.</p>
-                        <button className='button' onClick={() => handleLogout()}>Logout</button>
+                        <button className='button'>Logout</button>
                     </div>
                 </section>
                 <section className='settings-section'>

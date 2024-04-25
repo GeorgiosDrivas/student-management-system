@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoginContext } from '../App';
+import { useAuth } from '../AuthContext';
 
 export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [data, setData] = useState([]);
     const [password, setPassword] = useState("");
-    const [failedLogin, setFailedLogin] = useState("");
-    const { setIsLoggedIn } = useContext(LoginContext);
+
+    const { login, isAuthenticated } = useAuth();
 
     async function fetchData() {
         try {
@@ -26,18 +26,16 @@ export default function Login() {
     async function handleClick(event) {
         event.preventDefault();
         await fetchData();
-        if (data.students) {
-            const user = data.students.find(student => student.email === email && student.password === password);
-            if (user) {
-                setIsLoggedIn(true); // Update login state using context
-                navigate('/dashboard');
-            } else {
-                setEmail("");
-                setPassword("");
-                setFailedLogin("Wrong credentials. Please try again.");
-            }
-        }
+        if (email && password) login(email, password);
     }
+
+    useEffect(
+        function () {
+            if (isAuthenticated) navigate("/dashboard", { replace: true });
+            if (!isAuthenticated) navigate("/login", { replace: true });
+        },
+        [isAuthenticated, navigate]
+    );
 
     return (
         <div className="container">
@@ -53,13 +51,6 @@ export default function Login() {
                                     <button className='button' onClick={(e) => handleClick(e)}>Log in</button>
                                 </div>
                             </form>
-                            {
-                                failedLogin && (
-                                    <div className='mt-2 text-center position-absolute w-100'>
-                                        <p className='' style={{ color: 'red' }}>{failedLogin}</p>
-                                    </div>
-                                )
-                            }
                         </div>
                     </div>
                 </div>

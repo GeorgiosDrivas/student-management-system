@@ -5,16 +5,13 @@ import Events from './EventsDashboard';
 import { useState, useEffect, useContext } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
-import { LoginContext } from "../../App";
+import { useAuth } from "../../AuthContext";
 
 export default function Dashboard() {
 
-    const { setIsLoggedIn } = useContext(LoginContext);
-
-    // Declare date variables for greeting message
-    let date = new Date().getHours();
-    const morning = 12;
     const [data, setData] = useState([]);
+    const { logout, isAuthenticated } = useAuth();
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -34,12 +31,17 @@ export default function Dashboard() {
     }, []);
 
     const navigate = useNavigate();
-    const handleLogout = () => {
-        localStorage.removeItem('isLoggedIn');
-        window.location.reload();
-        setIsLoggedIn(false);
-        navigate('/login');
-    };
+
+    function handleLogout() {
+        logout();
+    }
+
+    useEffect(
+        function () {
+            if (!isAuthenticated) navigate("/login", { replace: true });
+        },
+        [isAuthenticated, navigate]
+    );
 
     return (
         <>
@@ -83,7 +85,7 @@ export default function Dashboard() {
                                         <p className="m-0 profile-year">{data.students[0].year}</p>
                                     </div>
                                     <div className="ms-4">
-                                        <button onClick={handleLogout} className="logout-btn">
+                                        <button className="logout-btn" onClick={handleLogout}>
                                             <LogoutIcon />
                                         </button>
                                     </div>

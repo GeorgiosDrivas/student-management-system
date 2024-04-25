@@ -1,4 +1,3 @@
-import React, { useState, createContext } from 'react';
 import './App.css';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import SingleArticle from './components/single-pages/news/SingleArticle';
@@ -11,37 +10,55 @@ import Events from './components/single-pages/EventsPage';
 import Settings from './components/single-pages/SettingsPage';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
-
-export const LoginContext = createContext({});
+import ProtectedRoute from './ProtectedRoute';
+import { useAuth } from './AuthContext';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const { isAuthenticated } = useAuth();
 
   return (
-    <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      <div className="row">
-        {isLoggedIn && (
+    isAuthenticated ? (
+      <ProtectedRoute>
+        <div className="row">
           <div className='col-12 col-lg-1 p-0'>
             <Sidebar />
           </div>
-        )}
-        <div className='col-12 col-lg-11 p-0'>
-          <Routes>
-            <Route path="/" element={!isLoggedIn ? <Navigate to="/login" /> : <Navigate to="/dashboard" />} />
-            <Route path="login" element={<Login />} />
-            <Route path="dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-            <Route path="semester" element={isLoggedIn ? <SemesterPage /> : <Navigate to="/login" />} />
-            <Route path="events" element={isLoggedIn ? <Events /> : <Navigate to="/login" />} />
-            <Route path="news" element={isLoggedIn ? <News /> : <Navigate to="/login" />} />
-            <Route path="news/:id" element={isLoggedIn ? <SingleArticle /> : <Navigate to="/login" />} />
-            <Route path="exercises" element={isLoggedIn ? <Exercises /> : <Navigate to="/login" />} />
-            <Route path="settings" element={isLoggedIn ? <Settings /> : <Navigate to="/login" />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className='col-12 col-lg-11 p-0'>
+            <Routes>
+              {/* Routes for authenticated users */}
+              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/semester" element={<SemesterPage />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/news/:id" element={<SingleArticle />} />
+              <Route path="/exercises" element={<Exercises />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </LoginContext.Provider>
-  );
+      </ProtectedRoute>
+    ) : (
+      <ProtectedRoute>
+        {/* Routes for unauthenticated users */}
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/semester" element={<SemesterPage />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<SingleArticle />} />
+          <Route path="/exercises" element={<Exercises />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ProtectedRoute>
+    )
+  )
 }
 
 export default App;
