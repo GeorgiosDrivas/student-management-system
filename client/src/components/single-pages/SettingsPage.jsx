@@ -1,8 +1,22 @@
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
+import { useEffect } from 'react';
 
 export default function Settings() {
 
+    const { logout, isAuthenticated } = useAuth();
     const navigate = useNavigate();
+
+    function handleLogout() {
+        logout();
+    }
+
+    useEffect(
+        function () {
+            if (!isAuthenticated) navigate("/login", { replace: true });
+        },
+        [isAuthenticated, navigate]
+    );
 
     return (
         <>
@@ -12,7 +26,7 @@ export default function Settings() {
                     <div>
                         <h2 className='mb-3'>Logout</h2>
                         <p>Click this button to log-out. Every change will be saved in the database.<br />After logging out, you will be redirected in the login page.</p>
-                        <button className='button'>Logout</button>
+                        <button className='button' onClick={handleLogout}>Logout</button>
                     </div>
                 </section>
                 <section className='settings-section'>

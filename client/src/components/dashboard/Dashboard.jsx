@@ -12,7 +12,6 @@ export default function Dashboard() {
     const [data, setData] = useState([]);
     const { logout, isAuthenticated } = useAuth();
 
-
     useEffect(() => {
         const fetchUsers = async () => {
             try {
