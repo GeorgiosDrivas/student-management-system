@@ -6,6 +6,7 @@ export default function Settings() {
     const { logout } = useAuth();
     const id = '65d24a7691bee0a0e12e7840';
     const [newEmail, setNewEmail] = useState("");
+    const [newPassword, setNewPassword] = useState("");
 
     function handleLogout() {
         logout();
@@ -31,8 +32,32 @@ export default function Settings() {
         }
     };
 
-    const handleSubmit = () => {
+    const handleNewEmail = () => {
         handleUpdateEmail(id, newEmail);
+    };
+
+    const handleUpdatePassword = async (id, password) => {
+        try {
+            const response = await fetch(`http://localhost:3000/students/${id}/update-password`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ password }),
+            });
+
+            if (response.ok) {
+                console.log('Email updated successfully');
+            } else {
+                console.error('Failed to update email');
+            }
+        } catch (error) {
+            console.error('Error updating email:', error.message);
+        }
+    };
+
+    const handleNewPass = () => {
+        handleUpdatePassword(id, newPassword);
     };
 
     return (
@@ -46,10 +71,25 @@ export default function Settings() {
                             In this section you can change the email of your profile.<br />
                             After changing your email, the page will refresh and you will have to log in again.
                         </p>
-                        <div className='w-50'>
-                            <form className='d-flex flex-column'>
+                        <div className='setting-form-wrap'>
+                            <form className='d-flex flex-column newCourseForm'>
                                 <input type="text" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder='New Email' />
-                                <button className='mt-3 button' onClick={handleSubmit}>Change email</button>
+                                <button className='mt-3 button' onClick={handleNewEmail}>Change email</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section className='settings-section'>
+                    <div>
+                        <h2 className='mb-3'>Change Password</h2>
+                        <p>
+                            In this section you can change the password of your profile.<br />
+                            After changing your password, the page will refresh and you will have to log in again.
+                        </p>
+                        <div className='setting-form-wrap'>
+                            <form className='newCourseForm d-flex flex-column'>
+                                <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='New Password' />
+                                <button className='mt-3 button' onClick={handleNewPass}>Change password</button>
                             </form>
                         </div>
                     </div>

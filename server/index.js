@@ -157,7 +157,6 @@ app.get('/courses', async (request, response) => {
 app.put('/students/:id/update-email', async (request, response) => {
     try {
         const studentId = request.params.id;
-        console.log(studentId);
         const { email } = request.body;
 
         // Check if newEmail is provided
@@ -184,6 +183,48 @@ app.put('/students/:id/update-email', async (request, response) => {
 
 // Get student by ID
 app.get('/students/:id/update-email', async (request, response) => {
+    try {
+        const studentId = request.params.id;
+        const student = await Student.findById(studentId);
+        if (!student) {
+            return response.status(404).json({ message: 'Student not found' });
+        }
+        return response.status(200).json(student);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).send({ message: 'Internal server error' });
+    }
+});
+
+app.put('/students/:id/update-password', async (request, response) => {
+    try {
+        const studentId = request.params.id;
+        const { password } = request.body;
+
+        // Check if newEmail is provided
+        if (!password) {
+            return response.status(400).json({ message: 'New email is required' });
+        }
+
+        // Update email in the database
+        const updatedStudent = await Student.findByIdAndUpdate(
+            studentId,
+            { password: password },
+            { new: true }
+        );
+
+        if (!updatedStudent) {
+            return response.status(404).json({ message: 'Student not found' });
+        }
+
+        return response.status(200).json({ message: 'Email updated successfully', student: updatedStudent });
+    } catch (error) {
+        response.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Get student by ID
+app.get('/students/:id/update-password', async (request, response) => {
     try {
         const studentId = request.params.id;
         const student = await Student.findById(studentId);

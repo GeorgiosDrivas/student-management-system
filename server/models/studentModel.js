@@ -10,6 +10,9 @@ const studentSchema = mongoose.Schema(
         },
         email: {
             type: String,
+        },
+        password: {
+            type: String,
         }
     }
 );

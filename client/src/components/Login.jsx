@@ -10,22 +10,8 @@ export default function Login() {
 
     const { login, isAuthenticated } = useAuth();
 
-    async function fetchData() {
-        try {
-            const response = await fetch('http://localhost:3000/students');
-            if (!response.ok) {
-                throw new Error('Failed to fetch students data');
-            }
-            const dt = await response.json();
-            setData(dt);
-        } catch (error) {
-            console.error('Failed to fetch students data:', error);
-        }
-    }
-
     async function handleClick(event) {
         event.preventDefault();
-        await fetchData();
         if (email && password) login(email, password);
     }
 

@@ -297,3 +297,17 @@ button:focus:not(:focus-visible) {
 .social-link {
   color: blue;
 }
+
+.setting-form-wrap {
+  width: 30%;
+}
+
+.setting-form-wrap .newCourseForm input {
+  margin-bottom: 0;
+  height: 54px;
+}
+
+.setting-form-wrap .newCourseForm button {
+  width: 70%;
+  height: 50px;
+}
