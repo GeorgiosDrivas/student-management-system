@@ -1,27 +1,59 @@
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Settings() {
 
-    const { logout, isAuthenticated } = useAuth();
-    const navigate = useNavigate();
+    const { logout } = useAuth();
+    const id = '65d24a7691bee0a0e12e7840';
+    const [newEmail, setNewEmail] = useState("");
 
     function handleLogout() {
         logout();
     }
 
-    useEffect(
-        function () {
-            if (!isAuthenticated) navigate("/login", { replace: true });
-        },
-        [isAuthenticated, navigate]
-    );
+    const handleUpdateEmail = async (id, email) => {
+        try {
+            const response = await fetch(`http://localhost:3000/students/${id}/update-email`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                console.log('Email updated successfully');
+            } else {
+                console.error('Failed to update email');
+            }
+        } catch (error) {
+            console.error('Error updating email:', error.message);
+        }
+    };
+
+    const handleSubmit = () => {
+        handleUpdateEmail(id, newEmail);
+    };
 
     return (
         <>
             <main className="section-title pe-5">
                 <h1 className='mb-5'>Settings</h1>
+                <section className='settings-section'>
+                    <div>
+                        <h2 className='mb-3'>Change Email</h2>
+                        <p>
+                            In this section you can change the email of your profile.<br />
+                            After changing your email, the page will refresh and you will have to log in again.
+                        </p>
+                        <div className='w-50'>
+                            <form className='d-flex flex-column'>
+                                <input type="text" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder='New Email' />
+                                <button className='mt-3 button' onClick={handleSubmit}>Change email</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
                 <section className='settings-section'>
                     <div>
                         <h2 className='mb-3'>Logout</h2>

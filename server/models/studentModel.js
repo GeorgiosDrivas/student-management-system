@@ -7,6 +7,9 @@ const studentSchema = mongoose.Schema(
         },
         surname: {
             type: String,
+        },
+        email: {
+            type: String,
         }
     }
 );

@@ -19,6 +19,7 @@ function reducer(state, action) {
 
 function AuthProvider({ children }) {
   const [data, setData] = useState([]);
+  const [error, setError] = useState();
 
   const [{ isAuthenticated }, dispatch] = useReducer(
     reducer,

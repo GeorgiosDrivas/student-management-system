@@ -22,6 +22,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+
 app.use(cors());
 
 //Landing page
@@ -153,7 +154,50 @@ app.get('/courses', async (request, response) => {
     }
 });
 
-//Students Endpoint
+app.put('/students/:id/update-email', async (request, response) => {
+    try {
+        const studentId = request.params.id;
+        console.log(studentId);
+        const { email } = request.body;
+
+        // Check if newEmail is provided
+        if (!email) {
+            return response.status(400).json({ message: 'New email is required' });
+        }
+
+        // Update email in the database
+        const updatedStudent = await Student.findByIdAndUpdate(
+            studentId,
+            { email: email },
+            { new: true }
+        );
+
+        if (!updatedStudent) {
+            return response.status(404).json({ message: 'Student not found' });
+        }
+
+        return response.status(200).json({ message: 'Email updated successfully', student: updatedStudent });
+    } catch (error) {
+        response.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// Get student by ID
+app.get('/students/:id/update-email', async (request, response) => {
+    try {
+        const studentId = request.params.id;
+        const student = await Student.findById(studentId);
+        if (!student) {
+            return response.status(404).json({ message: 'Student not found' });
+        }
+        return response.status(200).json(student);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).send({ message: 'Internal server error' });
+    }
+});
+
+// Retrieve all students
 app.get('/students', async (request, response) => {
     try {
         const students = await Student.find({});
