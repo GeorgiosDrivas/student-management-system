@@ -1,5 +1,4 @@
 <h1>Student Management System Web App</h1>
-<a href="https://student-management-system-01l8.onrender.com" title="Live Link">https://student-management-system-01l8.onrender.com</a>
 
 <p>This repository contains the source code for a comprehensive Student Management System web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js) along with Bootstrap for the frontend design.</p>
 
