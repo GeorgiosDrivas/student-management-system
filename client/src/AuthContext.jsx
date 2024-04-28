@@ -45,8 +45,11 @@ function AuthProvider({ children }) {
 
 
   function login(email, password) {
-    if (email === data.students[0].email && password === data.students[0].password)
-      dispatch({ type: "login" });
+    if (data.students) {
+      if (email === data.students[0].email && password === data.students[0].password) {
+        dispatch({ type: "login" });
+      }
+    }
   }
 
   function logout() {
