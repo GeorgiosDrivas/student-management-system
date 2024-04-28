@@ -1,8 +1,10 @@
 import { useAuth } from '../../AuthContext';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Settings() {
 
+    const navigate = useNavigate();
     const { logout } = useAuth();
     const id = '65d24a7691bee0a0e12e7840';
     const [newEmail, setNewEmail] = useState("");
@@ -34,6 +36,7 @@ export default function Settings() {
 
     const handleNewEmail = () => {
         handleUpdateEmail(id, newEmail);
+        navigate("/login");
     };
 
     const handleUpdatePassword = async (id, password) => {
@@ -58,6 +61,7 @@ export default function Settings() {
 
     const handleNewPass = () => {
         handleUpdatePassword(id, newPassword);
+        navigate("/login");
     };
 
     return (
