@@ -11,7 +11,7 @@ export default function SemesterPage() {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('http://localhost:3000/courses');
+                const response = await fetch('https://student-management-system-01l8.onrender.com/courses');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }

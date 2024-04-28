@@ -11,8 +11,8 @@ export default function SingleArticle() {
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const postId = id; // Replace 'your_post_id_here' with the actual ID
-                const response = await fetch(`http://localhost:3000/news/${postId}`);
+                const postId = id;
+                const response = await fetch(`https://student-management-system-01l8.onrender.com/news/${postId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch post data');
                 }

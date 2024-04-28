@@ -10,7 +10,7 @@ export default function Summary() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('http://localhost:3000/courses');
+                const response = await fetch('https://student-management-system-01l8.onrender.com/courses');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }
@@ -28,7 +28,7 @@ export default function Summary() {
     useEffect(() => {
         const fetchSemester = async () => {
             try {
-                const response = await fetch('http://localhost:3000/semester');
+                const response = await fetch('https://student-management-system-01l8.onrender.com/semester');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }

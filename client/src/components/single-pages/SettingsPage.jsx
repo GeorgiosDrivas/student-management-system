@@ -14,7 +14,7 @@ export default function Settings() {
 
     const handleUpdateEmail = async (id, email) => {
         try {
-            const response = await fetch(`http://localhost:3000/students/${id}/update-email`, {
+            const response = await fetch(`https://student-management-system-01l8.onrender.com/students/${id}/update-email`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export default function Settings() {
 
     const handleUpdatePassword = async (id, password) => {
         try {
-            const response = await fetch(`http://localhost:3000/students/${id}/update-password`, {
+            const response = await fetch(`https://student-management-system-01l8.onrender.com/students/${id}/update-password`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

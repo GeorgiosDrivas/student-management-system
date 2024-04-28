@@ -14,7 +14,7 @@ export default function SingleExercise({ exercise }) {
 
     const handleUpdate = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/exercises/${exercise._id}`, {
+            const response = await fetch(`https://student-management-system-01l8.onrender.com/exercises/${exercise._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
