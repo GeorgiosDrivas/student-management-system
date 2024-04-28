@@ -36,7 +36,7 @@ export default function Settings() {
 
     const handleNewEmail = () => {
         handleUpdateEmail(id, newEmail);
-        navigate("/login", { replace: true });
+        logout();
     };
 
     const handleUpdatePassword = async (id, password) => {
@@ -61,7 +61,7 @@ export default function Settings() {
 
     const handleNewPass = () => {
         handleUpdatePassword(id, newPassword);
-        navigate("/login", { replace: true });
+        logout();
     };
 
     return (
