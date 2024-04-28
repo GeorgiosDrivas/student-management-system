@@ -11,6 +11,7 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { readFileSync } from 'fs';
+import path from 'path';
 
 // Get the directory name of the current module
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -24,6 +25,11 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, "dist")));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "dist/index.html"));
+})
 
 //Landing page
 app.get('/', (req, res) => {
