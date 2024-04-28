@@ -14,30 +14,51 @@ import ProtectedRoute from './ProtectedRoute';
 import { useAuth } from './AuthContext';
 
 function App() {
+
   const { isAuthenticated } = useAuth();
 
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <ProtectedRoute path="/">
+    isAuthenticated ? (
+      <ProtectedRoute>
         <div className="row">
           <div className='col-12 col-lg-1 p-0'>
             <Sidebar />
           </div>
           <div className='col-12 col-lg-11 p-0'>
-            <Dashboard />
-            <SemesterPage />
-            <Events />
-            <News />
-            <SingleArticle />
-            <Exercises />
-            <Settings />
-            <NotFound default />
+            <Routes>
+              {/* Routes for authenticated users */}
+              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/semester" element={<SemesterPage />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/news/:id" element={<SingleArticle />} />
+              <Route path="/exercises" element={<Exercises />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </div>
         </div>
       </ProtectedRoute>
-    </Routes>
-  );
+    ) : (
+      <ProtectedRoute>
+        {/* Routes for unauthenticated users */}
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/semester" element={<SemesterPage />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<SingleArticle />} />
+          <Route path="/exercises" element={<Exercises />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ProtectedRoute>
+    )
+  )
 }
 
 export default App;
