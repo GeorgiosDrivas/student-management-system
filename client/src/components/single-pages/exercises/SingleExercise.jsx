@@ -12,7 +12,8 @@ export default function SingleExercise({ exercise }) {
     const [exercise_subject, setExerciseSubject] = useState(exercise.exercise_subject);
     const [status, setStatus] = useState(exercise.status);
 
-    const handleUpdate = async () => {
+    const handleUpdate = async (e) => {
+        e.preventDefualt();
         try {
             const response = await fetch(`https://student-management-system-01l8.onrender.com/exercises/${exercise._id}`, {
                 method: 'PUT',
@@ -67,7 +68,7 @@ export default function SingleExercise({ exercise }) {
                             <option value="Draft">Draft</option>
                         </select>
                         <div className='my-4'>
-                            <button className="button" onClick={handleUpdate}>Submit</button>
+                            <button className="button" onClick={(e) => handleUpdate(e)}>Submit</button>
                         </div>
                     </form>
                 ) : null
