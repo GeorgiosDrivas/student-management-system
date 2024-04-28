@@ -12,7 +12,7 @@ export default function SingleArticle() {
         const fetchArticle = async () => {
             try {
                 const postId = id;
-                const response = await fetch(`https://student-management-system-01l8.onrender.com/news/${postId}`);
+                const response = await fetch(`https://student-management-system-zm51.onrender.com/news/${postId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch post data');
                 }

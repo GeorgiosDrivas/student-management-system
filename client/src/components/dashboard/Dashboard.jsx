@@ -15,7 +15,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('https://student-management-system-01l8.onrender.com/students');
+                const response = await fetch('https://student-management-system-zm51.onrender.com/students');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }

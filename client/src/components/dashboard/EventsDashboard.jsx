@@ -17,7 +17,7 @@ export default function Events() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('https://student-management-system-01l8.onrender.com/events');
+                const response = await fetch('https://student-management-system-zm51.onrender.com/events');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }

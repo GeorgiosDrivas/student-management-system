@@ -17,7 +17,7 @@ export default function Exercises() {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('https://student-management-system-01l8.onrender.com/courses');
+                const response = await fetch('https://student-management-system-zm51.onrender.com/courses');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }
@@ -34,7 +34,7 @@ export default function Exercises() {
     useEffect(() => {
         const fetchExercises = async () => {
             try {
-                const response = await fetch('https://student-management-system-01l8.onrender.com/exercises');
+                const response = await fetch('https://student-management-system-zm51.onrender.com/exercises');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }
@@ -52,7 +52,7 @@ export default function Exercises() {
 
         setLoading(true);
         try {
-            const response = await fetch('https://student-management-system-01l8.onrender.com/exercises', {
+            const response = await fetch('https://student-management-system-zm51.onrender.com/exercises', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

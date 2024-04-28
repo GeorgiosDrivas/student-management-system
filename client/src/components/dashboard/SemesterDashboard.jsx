@@ -8,7 +8,7 @@ export default function Semester() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('https://student-management-system-01l8.onrender.com/courses');
+                const response = await fetch('https://student-management-system-zm51.onrender.com/courses');
                 if (!response.ok) {
                     throw new Error('Failed to fetch students data');
                 }
