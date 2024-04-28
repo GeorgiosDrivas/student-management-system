@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import SingleArticle from './components/single-pages/news/SingleArticle';
 import Dashboard from './components/dashboard/Dashboard';
 import Sidebar from './components/single-pages/Sidebar';
