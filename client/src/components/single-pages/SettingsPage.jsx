@@ -24,19 +24,14 @@ export default function Settings() {
                 body: JSON.stringify({ email }),
             });
 
-            if (response.ok) {
-                console.log('Email updated successfully');
-            } else {
-                console.error('Failed to update email');
-            }
         } catch (error) {
             console.error('Error updating email:', error.message);
         }
     };
 
-    const handleNewEmail = () => {
+    const handleNewEmail = async () => {
         handleUpdateEmail(id, newEmail);
-        logout();
+        navigate("/login", { replace: true });
     };
 
     const handleUpdatePassword = async (id, password) => {
@@ -49,19 +44,14 @@ export default function Settings() {
                 body: JSON.stringify({ password }),
             });
 
-            if (response.ok) {
-                console.log('Email updated successfully');
-            } else {
-                console.error('Failed to update email');
-            }
         } catch (error) {
             console.error('Error updating email:', error.message);
         }
     };
 
-    const handleNewPass = () => {
+    const handleNewPass = async () => {
         handleUpdatePassword(id, newPassword);
-        logout();
+        navigate("/login", { replace: true });
     };
 
     return (
