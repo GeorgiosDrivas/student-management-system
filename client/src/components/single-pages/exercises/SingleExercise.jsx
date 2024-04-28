@@ -2,7 +2,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState, useContext } from 'react';
 import { ExerciseContext } from './Exercises';
 
-export default function SingleExercise({ exercise }) {
+export default function SingleExercise({ exercise, setShowArticle }) {
 
     const { data } = useContext(ExerciseContext);
 
@@ -13,8 +13,8 @@ export default function SingleExercise({ exercise }) {
     const [status, setStatus] = useState(exercise.status);
 
     const handleUpdate = async (e) => {
-        e.preventDefualt();
         try {
+            e.preventDefault(); // Fixed typo here
             const response = await fetch(`https://student-management-system-zm51.onrender.com/exercises/${exercise._id}`, {
                 method: 'PUT',
                 headers: {
@@ -29,6 +29,11 @@ export default function SingleExercise({ exercise }) {
             });
             if (response.ok) {
                 setShowEdit(false);
+                // Update exercise props if necessary
+                exercise.exercise_name = exercise_name;
+                exercise.exercise_content = exercise_content;
+                exercise.exercise_subject = exercise_subject;
+                exercise.status = status;
             } else {
                 console.error('Failed to update exercise');
             }
@@ -36,6 +41,11 @@ export default function SingleExercise({ exercise }) {
             console.error('Error updating exercise:', error);
         }
     };
+
+
+    function updateExercise(e) {
+        handleUpdate(e);
+    }
 
     return (
         <div className="single-article-details">
@@ -68,7 +78,7 @@ export default function SingleExercise({ exercise }) {
                             <option value="Draft">Draft</option>
                         </select>
                         <div className='my-4'>
-                            <button className="button" onClick={(e) => handleUpdate(e)}>Submit</button>
+                            <button className="button" onClick={(e) => updateExercise(e)}>Submit</button>
                         </div>
                     </form>
                 ) : null
