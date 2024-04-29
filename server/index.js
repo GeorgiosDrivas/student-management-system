@@ -12,10 +12,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { readFileSync } from 'fs';
 
-// Get the directory name of the current module
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-// Read the HTML file
 const htmlContent = readFileSync(`${__dirname}/index.html`, 'utf8');
 
 dotenv.config();
@@ -25,7 +22,6 @@ app.use(express.json());
 
 app.use(cors());
 
-//Landing page
 app.get('/', (req, res) => {
     res.send(htmlContent);
 });

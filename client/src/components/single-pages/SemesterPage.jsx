@@ -5,7 +5,6 @@ export default function SemesterPage() {
 
     const [courses, setCourses] = useState([]);
     const [error, setError] = useState('');
-    const [showForm, setShowForm] = useState(false);
     const [selectValue, setSelectValue] = useState("Summer Semester");
 
     useEffect(() => {
@@ -29,11 +28,6 @@ export default function SemesterPage() {
         event.preventDefault();
         const value = event.target.value;
         setSelectValue(value);
-    }
-
-    const handleShowClick = () => {
-        setShowForm(!showForm);
-        !showForm ? setShowBtnText("Hide Form") : setShowBtnText("Add new course");
     }
 
     return (

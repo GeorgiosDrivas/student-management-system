@@ -6,6 +6,7 @@ export default function Summary() {
 
     const [data, setData] = useState([]);
     const [semester, setSemester] = useState([]);
+    let gpa = 0;
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -42,7 +43,6 @@ export default function Summary() {
         fetchSemester();
     }, []);
 
-    let gpa = 0;
 
     if (data.courses) {
         let totalGradePoints = 0;
@@ -69,8 +69,8 @@ export default function Summary() {
         });
 
         let calculatedGPA = totalGradePoints / totalCourses;
-        gpa = Math.min(calculatedGPA, 4); // Ensure GPA doesn't exceed 4
-        gpa = Math.round(gpa * 100) / 100; // Round to two decimal places
+        gpa = Math.min(calculatedGPA, 4);
+        gpa = Math.round(gpa * 100) / 100;
     }
 
     const gpaPercentage = (gpa / 4) * 100;

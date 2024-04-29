@@ -9,9 +9,6 @@ export default function Events() {
         day: 'numeric',
     };
     const currentDate = new Date().toLocaleDateString("en-US", dateOptions);
-    let eventDate = '';
-
-
     const [data, setData] = useState([]);
 
     useEffect(() => {

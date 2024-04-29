@@ -20,6 +20,7 @@ export default function News() {
 
         fetchNews();
     }, []);
+
     return (
         <>
             <section className="dashboard-section position-relative">

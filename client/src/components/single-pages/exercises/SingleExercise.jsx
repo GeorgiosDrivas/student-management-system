@@ -5,7 +5,6 @@ import { ExerciseContext } from './Exercises';
 export default function SingleExercise({ exercise, setShowArticle }) {
 
     const { data } = useContext(ExerciseContext);
-
     const [showEdit, setShowEdit] = useState(false);
     const [exercise_name, setExerciseName] = useState(exercise.exercise_name);
     const [exercise_content, setExerciseContent] = useState(exercise.exercise_content);
@@ -14,7 +13,7 @@ export default function SingleExercise({ exercise, setShowArticle }) {
 
     const handleUpdate = async (e) => {
         try {
-            e.preventDefault(); // Fixed typo here
+            e.preventDefault();
             const response = await fetch(`https://student-management-system-zm51.onrender.com/exercises/${exercise._id}`, {
                 method: 'PUT',
                 headers: {
@@ -29,7 +28,6 @@ export default function SingleExercise({ exercise, setShowArticle }) {
             });
             if (response.ok) {
                 setShowEdit(false);
-                // Update exercise props if necessary
                 exercise.exercise_name = exercise_name;
                 exercise.exercise_content = exercise_content;
                 exercise.exercise_subject = exercise_subject;
@@ -41,7 +39,6 @@ export default function SingleExercise({ exercise, setShowArticle }) {
             console.error('Error updating exercise:', error);
         }
     };
-
 
     function updateExercise(e) {
         handleUpdate(e);

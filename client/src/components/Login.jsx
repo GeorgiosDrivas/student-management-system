@@ -5,9 +5,7 @@ import { useAuth } from '../AuthContext';
 export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
-    const [data, setData] = useState([]);
     const [password, setPassword] = useState("");
-
     const { login, isAuthenticated } = useAuth();
 
     async function handleClick(event) {

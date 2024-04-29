@@ -11,6 +11,7 @@ export default function Dashboard() {
 
     const [data, setData] = useState([]);
     const { logout, isAuthenticated } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -29,18 +30,16 @@ export default function Dashboard() {
         fetchUsers();
     }, []);
 
-    const navigate = useNavigate();
-
-    function handleLogout() {
-        logout();
-    }
-
     useEffect(
         function () {
             if (!isAuthenticated) navigate("/login", { replace: true });
         },
         [isAuthenticated, navigate]
     );
+
+    function handleLogout() {
+        logout();
+    }
 
     return (
         <>
@@ -57,7 +56,6 @@ export default function Dashboard() {
                                                     (data.students) ? (
                                                         <h1>Greetings, {data.students[0].name}!</h1>
                                                     ) : null
-
                                                 }
                                             </div>
                                         </div>

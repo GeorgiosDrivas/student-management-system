@@ -5,7 +5,6 @@ import { ExerciseContext } from './Exercises';
 export default function ExercisesArticles() {
 
     const { exercise } = useContext(ExerciseContext);
-
     const [showArticle, setShowArticle] = useState(false);
 
     function handleClick() {
