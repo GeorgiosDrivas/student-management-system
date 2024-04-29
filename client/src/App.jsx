@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Settings = lazy(() => import("./components/single-pages/SettingsPage"));
 const Login = lazy(() => import("./components/Login"));
 const NotFound = lazy(() => import("./components/NotFound"));
 const ProtectedRoute = lazy(() => import("./ProtectedRoute"));
-
+import SpinnerFullPage from './SpinnerFullPage';
 
 function App() {
 
@@ -24,43 +24,47 @@ function App() {
   return (
     isAuthenticated ? (
       <ProtectedRoute>
-        <div className="row">
-          <div className='col-12 col-lg-1 p-0'>
-            <Sidebar />
+        <Suspense fallback={<SpinnerFullPage />}>
+          <div className="row">
+            <div className='col-12 col-lg-1 p-0'>
+              <Sidebar />
+            </div>
+            <div className='col-12 col-lg-11 p-0'>
+              <Routes>
+                {/* Routes for authenticated users */}
+                <Route path="/" element={<Login />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/semester" element={<SemesterPage />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/news/:id" element={<SingleArticle />} />
+                <Route path="/exercises" element={<Exercises />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
           </div>
-          <div className='col-12 col-lg-11 p-0'>
-            <Routes>
-              {/* Routes for authenticated users */}
-              <Route path="/" element={<Login />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/semester" element={<SemesterPage />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/news/:id" element={<SingleArticle />} />
-              <Route path="/exercises" element={<Exercises />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
-        </div>
+        </Suspense>
       </ProtectedRoute>
     ) : (
       <ProtectedRoute>
-        {/* Routes for unauthenticated users */}
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/semester" element={<SemesterPage />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:id" element={<SingleArticle />} />
-          <Route path="/exercises" element={<Exercises />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </ProtectedRoute>
+        <Suspense fallback={<SpinnerFullPage />}>
+          {/* Routes for unauthenticated users */}
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/semester" element={<SemesterPage />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<SingleArticle />} />
+            <Route path="/exercises" element={<Exercises />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </ProtectedRoute >
     )
   )
 }
