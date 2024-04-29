@@ -1,17 +1,21 @@
+import { lazy } from 'react';
+
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import SingleArticle from './components/single-pages/news/SingleArticle';
-import Dashboard from './components/dashboard/Dashboard';
-import Sidebar from './components/single-pages/Sidebar';
-import News from './components/single-pages/news/NewsPage';
-import SemesterPage from './components/single-pages/SemesterPage';
-import Exercises from './components/single-pages/exercises/Exercises';
-import Events from './components/single-pages/EventsPage';
-import Settings from './components/single-pages/SettingsPage';
-import Login from './components/Login';
-import NotFound from './components/NotFound';
-import ProtectedRoute from './ProtectedRoute';
 import { useAuth } from './AuthContext';
+
+const SingleArticle = lazy(() => import("./components/single-pages/news/SingleArticle"));
+const Dashboard = lazy(() => import("./components/dashboard/Dashboard"));
+const Sidebar = lazy(() => import("./components/single-pages/Sidebar"));
+const News = lazy(() => import("./components/single-pages/news/NewsPage"));
+const SemesterPage = lazy(() => import("./components/single-pages/SemesterPage"));
+const Exercises = lazy(() => import("./components/single-pages/exercises/Exercises"));
+const Events = lazy(() => import("./components/single-pages/EventsPage"));
+const Settings = lazy(() => import("./components/single-pages/SettingsPage"));
+const Login = lazy(() => import("./components/Login"));
+const NotFound = lazy(() => import("./components/NotFound"));
+const ProtectedRoute = lazy(() => import("./ProtectedRoute"));
+
 
 function App() {
 
