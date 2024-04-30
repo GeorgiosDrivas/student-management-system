@@ -6,6 +6,7 @@ export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordType, setPasswordType] = useState("password");
     const { login, isAuthenticated } = useAuth();
 
     async function handleClick(event) {
@@ -30,11 +31,15 @@ export default function Login() {
                         <div className='login-wrap position-relative'>
                             <form className='d-flex flex-column'>
                                 <input className='mb-3' type="text" placeholder='Email *' value={email} onChange={(e) => setEmail(e.target.value)} />
-                                <input className='mb-3' type="password" placeholder='Password *' value={password} onChange={(e) => setPassword(e.target.value)} />
-                                <div className='text-center'>
-                                    <button className='button' onClick={(e) => handleClick(e)}>Log in</button>
-                                </div>
+                                <input className='mb-3' type={passwordType} placeholder='Password *' value={password} onChange={(e) => setPassword(e.target.value)} />
                             </form>
+                            <div className='mb-4'>
+                                <label htmlFor="showPassword">Show Password</label>
+                                <input className='ms-3' type="checkbox" id='showPassword' name='show' onClick={() => (passwordType === "password") ? setPasswordType("text") : setPasswordType("password")} />
+                            </div>
+                            <div className='text-center'>
+                                <button className='button' onClick={(e) => handleClick(e)}>Log in</button>
+                            </div>
                         </div>
                     </div>
                 </div>

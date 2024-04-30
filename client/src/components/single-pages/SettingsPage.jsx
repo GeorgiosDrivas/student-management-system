@@ -9,6 +9,7 @@ export default function Settings() {
     const id = '65d24a7691bee0a0e12e7840';
     const [newEmail, setNewEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [passwordType, setPasswordType] = useState("password");
 
     function handleLogout() {
         logout();
@@ -82,9 +83,13 @@ export default function Settings() {
                         </p>
                         <div className='setting-form-wrap'>
                             <form className='newCourseForm d-flex flex-column'>
-                                <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='New Password' />
-                                <button className='mt-3 button' onClick={handleNewPass}>Change password</button>
+                                <input type={passwordType} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='New Password' />
                             </form>
+                            <div className='mb-3'>
+                                <label htmlFor="showPassword">Show Password</label>
+                                <input className='ms-3' type="checkbox" id='showPassword' name='show' onClick={() => (passwordType === "password") ? setPasswordType("text") : setPasswordType("password")} />
+                            </div>
+                            <button className='mt-3 button' onClick={handleNewPass}>Change password</button>
                         </div>
                     </div>
                 </section>
