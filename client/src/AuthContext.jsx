@@ -20,6 +20,7 @@ function reducer(state, action) {
 function AuthProvider({ children }) {
   const [data, setData] = useState([]);
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(true);
 
   const [{ isAuthenticated }, dispatch] = useReducer(
     reducer,
@@ -35,8 +36,10 @@ function AuthProvider({ children }) {
         }
         const dt = await response.json();
         setData(dt);
+        setLoading(false);
       } catch (error) {
         setError('Failed to fetch students data');
+        setLoading(false);
       }
     };
 
@@ -57,7 +60,7 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -7,11 +7,11 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordType, setPasswordType] = useState("password");
-    const { login, isAuthenticated } = useAuth();
+    const { login, isAuthenticated, loading } = useAuth();
 
     function handleClick(event) {
         event.preventDefault();
-        if (email && password) login(email, password);
+        if (email && password && !loading) login(email, password);
     }
 
     useEffect(
