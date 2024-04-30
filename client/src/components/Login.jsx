@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
@@ -8,6 +8,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [passwordType, setPasswordType] = useState("password");
     const { login, isAuthenticated, loading } = useAuth();
+    const inputRef = useRef(null);
 
     function handleClick(event) {
         event.preventDefault();
@@ -22,6 +23,10 @@ export default function Login() {
         [isAuthenticated, navigate]
     );
 
+    useEffect(function () {
+        inputRef.current.focus();
+    }, [])
+
     return (
         <div className="container">
             <div className="row">
@@ -30,7 +35,7 @@ export default function Login() {
                         <h1>Student Management System</h1>
                         <div className='login-wrap position-relative'>
                             <form className='d-flex flex-column'>
-                                <input className='mb-3' type="text" placeholder='Email *' value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input ref={inputRef} className='mb-3' type="text" placeholder='Email *' value={email} onChange={(e) => setEmail(e.target.value)} />
                                 <input className='mb-3' type={passwordType} placeholder='Password *' value={password} onChange={(e) => setPassword(e.target.value)} />
                             </form>
                             <div className='mb-4'>
