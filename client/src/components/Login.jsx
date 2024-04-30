@@ -9,7 +9,7 @@ export default function Login() {
     const [passwordType, setPasswordType] = useState("password");
     const { login, isAuthenticated } = useAuth();
 
-    async function handleClick(event) {
+    function handleClick(event) {
         event.preventDefault();
         if (email && password) login(email, password);
     }

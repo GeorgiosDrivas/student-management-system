@@ -43,7 +43,7 @@ function AuthProvider({ children }) {
     fetchUsers();
   }, []);
 
-
+  console.log(data);
   function login(email, password) {
     if (data.students) {
       if (email === data.students[0].email && password === data.students[0].password) {
