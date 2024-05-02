@@ -204,6 +204,12 @@ button:focus:not(:focus-visible) {
   font-size: 15px;
 }
 
+.course_wrap {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+}
+
 .semester-page-courses {
   margin-top: 100px;
 }

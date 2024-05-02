@@ -17,7 +17,7 @@ export default function News() {
                 const data = await response.json();
                 setData(data);
             } catch (error) {
-                setError('Failed to fetch students data');
+                console.log(error);
             }
         };
 
@@ -41,7 +41,7 @@ export default function News() {
                             {
                                 (data && data.news) ? (
                                     data.news.map(article => (
-                                        <NewsContext.Provider value={{
+                                        <NewsContext.Provider key={article._id} value={{
                                             id: article._id,
                                             title: article.news_title,
                                             desc: article.news_desc,

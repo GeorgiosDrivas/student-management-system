@@ -52,7 +52,7 @@ export default function SemesterPage() {
                                 {courses && courses.courses && selectValue ? (
                                     selectValue === 'Summer Semester' ? (
                                         courses.courses.filter(course => course.semester === 'Summer Semester').map(course => (
-                                            <div key={course._id} className="mb-5 d-flex flex-row justify-content-between align-items-start">
+                                            <div key={course._id} className="course_wrap mb-5 d-flex">
                                                 <div className="text-start">
                                                     <h2>{course.course_name}</h2>
                                                     <p className="taught-p">Taught by: <span className="fw-bold">{course.course_teacher}</span></p>

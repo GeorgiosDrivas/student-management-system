@@ -6,7 +6,6 @@ export default function SingleArticle() {
     const navigate = useNavigate();
     const { id } = useParams();
     const [article, setArticle] = useState([]);
-    const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -19,23 +18,23 @@ export default function SingleArticle() {
                 const data = await response.json();
                 setArticle(data);
             } catch (error) {
-                setError('Failed to fetch post data');
+                console.log(error);
             }
         };
 
         fetchArticle();
-    }, []);
+    }, [id]);
 
 
     return (
         <>
-            <div className="mt-5 px-5">
+            <div className="mt-lg-5 px-lg-5 px-3">
                 <h2 className='text-center mb-5'>{article.news_title}</h2>
                 <p>{article.news_desc}</p>
                 <div>
                     <button className='button mt-5' onClick={() => navigate(-1)}>&larr; Back to News</button>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
