@@ -1,0 +1,40 @@
+@media only screen and (min-width: 1600px) {
+    #sidebar-ul {
+        width: 3%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .login-wrap {
+        width: 350px;
+    }
+
+    .button {
+        padding: 5px 30px;
+    }
+
+    .login-wrap input {
+        padding: 6px 15px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    h1 {
+        font-size: 23px;
+    }
+
+    .login-wrap {
+        width: 260px;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .login-wrap {
+        width: 220px;
+    }
+}

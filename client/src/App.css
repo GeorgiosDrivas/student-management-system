@@ -239,13 +239,6 @@ button:focus:not(:focus-visible) {
   width: 150px;
 }
 
-/* Responsive */
-@media only screen and (min-width: 1600px) {
-  #sidebar-ul {
-    width: 3%;
-  }
-}
-
 /* Articles */
 .single-article-details {
   position: absolute;

@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import useFocus from '../hooks/useFocus';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [passwordType, setPasswordType] = useState("password");
     const { login, isAuthenticated, loading } = useAuth();
-    const inputRef = useRef(null);
+    const inputRef = useFocus();
 
     function handleClick(event) {
         event.preventDefault();
@@ -22,10 +23,6 @@ export default function Login() {
         },
         [isAuthenticated, navigate]
     );
-
-    useEffect(function () {
-        inputRef.current.focus();
-    }, [])
 
     return (
         <div className="container">
@@ -46,14 +43,12 @@ export default function Login() {
                                 <button className='button' onClick={(e) => handleClick(e)}>Log in</button>
                             </div>
                         </div>
+                        <div className="mt-5">
+                            <p>Test credentials:</p>
+                            <p className='m-0'>Email: jessica@gmail.com</p>
+                            <p className='m-0'>Password: 123jessica</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-12">
-                    <p>Test credentials:</p>
-                    <p className='m-0'>Email: jessica@gmail.com</p>
-                    <p className='m-0'>Password: 123jessica</p>
                 </div>
             </div>
         </div>
