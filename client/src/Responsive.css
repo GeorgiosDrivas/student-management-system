@@ -5,6 +5,25 @@
 }
 
 @media only screen and (max-width: 992px) {
+
+    /* Sidebar */
+    #sidebar-ul {
+        height: 7vh;
+        border-radius: 0;
+        padding-top: 5px;
+        width: 100%;
+        flex-direction: row;
+        position: relative;
+    }
+
+    #sidebar-ul:hover {
+        width: 100%;
+    }
+
+    #sidebar-ul li a span {
+        display: none;
+    }
+
     .login-wrap {
         width: 350px;
     }
@@ -15,6 +34,26 @@
 
     .login-wrap input {
         padding: 6px 15px;
+    }
+
+    .summaries {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .profile-text {
+        font-size: 15px;
+    }
+
+    .profile-details {
+        justify-content: start;
+    }
+
+    #sidebar-ul {
+        width: 130%;
+        overflow-x: scroll;
     }
 }
 
@@ -32,6 +71,10 @@
 @media only screen and (max-width: 350px) {
     h1 {
         font-size: 20px;
+    }
+
+    #sidebar-ul {
+        width: 160%;
     }
 
     .login-wrap {
