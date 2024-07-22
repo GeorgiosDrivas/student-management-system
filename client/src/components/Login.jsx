@@ -45,8 +45,8 @@ export default function Login() {
                         </div>
                         <div className="mt-5">
                             <p>Test credentials:</p>
-                            <p className='m-0'>Email: jessica@gmail.com</p>
-                            <p className='m-0'>Password: 123jessica</p>
+                            <p className='m-0'>Email: aimal@gmail.com</p>
+                            <p className='m-0'>Password: 123456aaaa</p>
                         </div>
                     </div>
                 </div>
